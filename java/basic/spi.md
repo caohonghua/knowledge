@@ -531,7 +531,7 @@ while(driversIterator.hasNext()) {
 
 最后总结一下jdk spi需要遵循的规范
 
-![SPI2](https://caohonghua.github.io/java-worker/assets/images/java/basic/spi/java-spi.png)
+![SPI2](https://caohonghua.github.io/java-worker/assets/images/java/basic/spi/java-spi.jpg)
 
 
 
