@@ -195,10 +195,10 @@ public class GenericsDemo{
 
 泛型方法，是在调用方法的时候指明泛型的具体类型。
 
-![泛型方法](https://caohonghua.github.io/java-worker/assets/images/java/basic/object-oriented/generic-method.png)
+![泛型方法](https://caohonghua.github.io/java-worker/assets/images/java/basic/generic/generic-method.png)
 调用泛型方法语法格式
 
-![泛型方法调用](https://caohonghua.github.io/java-worker/assets/images/java/basic/object-oriented/invoke-generic-method.png)
+![泛型方法调用](https://caohonghua.github.io/java-worker/assets/images/java/basic/generic/invoke-generic-method.png)
 
 说明一下，定义泛型方法时，必须在返回值前边加一个`<T>`，来声明这是一个泛型方法，持有一个泛型`T`，然后才可以用泛型T作为方法的返回值。
 
