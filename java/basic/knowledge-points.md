@@ -142,7 +142,7 @@ public final class String
 
 如果一个String对象已经被创建过了，那么就会从String Pool中取得引用。只有String是不可变的，才可能使用String Pool。
 
-![字符串常量池](/Users/caohonghua/文档/Java/images/007.png)
+![字符串常量池](https://caohonghua.github.io/java-worker/assets/images/java/basic/object-oriented/string-constant-pool.png)
 
 **安全性**
 
@@ -396,9 +396,6 @@ public class AccessWithInnerClassExample {
 }
 
 ```
-
----
-
 
 
 #### 抽象类与接口
@@ -1138,7 +1135,6 @@ public InitialOrderTest() {    System.out.println("构造函数");}
 - 子类(实例变量、普通语句块)
 - 子类(构造函数)
 
----
 
 
 
@@ -1180,9 +1176,7 @@ Throwable 可以用来表示任何可以作为异常抛出的类，分为两种:
 - **受检异常** : 需要用 try...catch... 语句捕获并进行处理，并且可以从异常中恢复；
 - **非受检异常** : 是程序运行时错误，例如除 0 会引发 Arithmetic Exception，此时程序崩溃并且无法恢复。
 
-![异常](/Users/caohonghua/文档/Java/images/008.png)
-
-
+![异常](https://caohonghua.github.io/java-worker/assets/images/java/basic/object-oriented/throwable.png)
 
 
 ### 9. 泛型
@@ -1247,8 +1241,6 @@ Java 注解是附加在代码中的一些元信息，用于一些工具在编译
 * Java 不支持操作符重载，虽然可以对两个 String 对象支持加法运算，但是这是语言内置支持的操作，不属于操作符重载，而 C++ 可以。
 * Java 的 goto 是保留字，但是不可用，C++ 可以使用 goto。
 * Java 不支持条件编译，C++ 通过 #ifdef #ifndef 等预处理命令从而实现条件编译。
-
-
 
 
 
