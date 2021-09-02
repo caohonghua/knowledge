@@ -6,7 +6,7 @@
 * [面向对象](/java-worker/java/basic/object-oriented/)
 * [知识点](/java-worker/java/basic/knowledge-points/)
 * [图谱](/java-worker/java/basic/atlas/)
-* [泛型机制详解](/java-worker/java/basic/generics/)
+* [泛型机制详解](/java-worker/java/basic/generic/)
 * [异常机制详解](/java-worker/java/basic/exception/)
 * [反射机制详解](/java-worker/java/basic/reflect/)
 * [SPI机制详解](/java-worker/java/basic/spi/)
