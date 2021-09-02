@@ -8,7 +8,7 @@
 * [图谱](/java-worker/java/basic/atlas/)
 * [泛型机制详解](/java-worker/java/basic/generic/)
 * [注解机制详解](/java-worker/java/basic/annotation/)
-* [异常机制详解](/java-worker/java/basic/exception/)
+* [异常机制详解](/java-worker/java/basic/throwable/)
 * [反射机制详解](/java-worker/java/basic/reflect/)
 * [SPI机制详解](/java-worker/java/basic/spi/)
 
