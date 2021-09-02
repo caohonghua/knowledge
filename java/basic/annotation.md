@@ -1,5 +1,5 @@
 ---
-permalink: /java/basic/atlas/
+permalink: /java/basic/annotation/
 ---
 
 ## 注解机制详解
