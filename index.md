@@ -85,6 +85,7 @@
 * [调试排错：使用IDEA本地调试和远程调试]
 
 ### API
+* <a href="https://docs.oracle.com/javase/8/docs/api/" target="_blank">Java8</a>
 * [Java8](https://docs.oracle.com/javase/8/docs/api/)
 * [Better-Java](https://www.seancassidy.me/better-java.html)
 * [Awesome-Java](https://github.com/akullpp/awesome-java)
