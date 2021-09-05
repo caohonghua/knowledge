@@ -86,8 +86,7 @@
 
 ### API
 * <a href="https://docs.oracle.com/javase/8/docs/api/" target="_blank">Java8</a>
-* [Java8](https://docs.oracle.com/javase/8/docs/api/)
-* [Better-Java](https://www.seancassidy.me/better-java.html)
-* [Awesome-Java](https://github.com/akullpp/awesome-java)
+* <a href="https://www.seancassidy.me/better-java.html" target="_blank">Better-Java</a>
+* <a href="https://github.com/akullpp/awesome-java" target="_blank">Awesome-Java</a>
 
-### [参考](https://www.pdai.tech/md/java/thread/java-thread-x-threadlocal.html)
+### <a href="https://www.pdai.tech/md/java/thread/java-thread-x-threadlocal.html" target="_blank">参考</a>
