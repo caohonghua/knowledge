@@ -93,7 +93,7 @@ void addEntry(int hash, K key, V value, int bucketIndex) {
 
 `remove(Object key)`的作用是删除`key`值对应的`entry`，该方法的具体逻辑是在`removeEntryForKey(Object key)`里实现的。`removeEntryForKey()`方法会首先找到`key`值对应的`entry`，然后删除该`entry`(修改链表的相应引用)。查找过程跟`getEntry()`过程类似。
 
-![remove](https://caohonghua.github.io/java-worker/assets/images/java/collection/remove.png)
+![remove](https://caohonghua.github.io/java-worker/assets/images/java/collection/hash/remove.png)
 
 ```java
 //removeEntryForKey()
