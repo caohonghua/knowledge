@@ -50,4 +50,4 @@
 * [JUC工具类：Exchanger详解](/java-worker/java/concurrency/exchanger/)
 * [ThreadLocal详解](/java-worker/java/concurrency/threadlocal/)
 
-### ![参考](https://www.pdai.tech/md/java/thread/java-thread-x-threadlocal.html)
+### [参考](https://www.pdai.tech/md/java/thread/java-thread-x-threadlocal.html)
