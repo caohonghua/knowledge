@@ -50,7 +50,43 @@
 * [JUC工具类：Exchanger详解](/java-worker/java/concurrency/exchanger/)
 * [ThreadLocal详解](/java-worker/java/concurrency/threadlocal/)
 
+### Java IO/NIO/AIO
+* [知识体系]
+* [分类]
+* [设计模式：装饰者模式]
+* [InputStream源码解析]
+* [OutputStream源码解析]
+* [常见类使用]
+* [Unix-IO模型]
+* [BIO详解]
+* [NIO详解]
+* [IO多路复用详解]
+* [异步IO详解]
+* [Netty框架]
+* [零拷贝实现]
+
+### JVM
+* [知识体系]
+* [JVM基础：类字节码详解]
+* [JVM基础：Java类加载机制]
+* [JVM基础：JVM内存结构]
+* [JVM基础：Java内存模型引入]
+* [JVM基础：Java内存模型详解]
+* [JVM基础：Java垃圾回收基础]
+* [JVM基础：Java垃圾回收器G1详解]
+* [调试排错：JVM调优参数]
+* [调试排错：Java-OOM分析]
+* [调试排错：Java线程Dump分析]
+* [调试排错：Java问题排查：Linux命令]
+* [调试排错：Java问题排查：工具单]
+* [调试排错：9种常见的CMS-GC问题分析与解决]
+* [调试排错：Java动态调试技术原理]
+* [调试排错：Java应用在线调试Arthas]
+* [调试排错：使用IDEA本地调试和远程调试]
+
 ### API
 * [Java8](https://docs.oracle.com/javase/8/docs/api/)
+* [Better-Java](https://www.seancassidy.me/better-java.html)
+* [Awesome-Java](https://github.com/akullpp/awesome-java)
 
 ### [参考](https://www.pdai.tech/md/java/thread/java-thread-x-threadlocal.html)
