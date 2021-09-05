@@ -19,5 +19,6 @@
 * [Stack&Queue源码解析](/java-worker/java/collection/stack&queue/)
 * [PriorityQueue源码解析](/java-worker/java/collection/priorityqueue/)
 * [HashSet&HashMap源码解析](/java-worker/java/collection/hash/)
+* [LinkedHashSet&Map源码解析](/java-worker/java/collection/linkedhash/)
 * [TreeSet&TreeMap源码解析](/java-worker/java/collection/tree/)
 * [WeakHashMap源码解析](/java-worker/java/collection/weakhashmap/)

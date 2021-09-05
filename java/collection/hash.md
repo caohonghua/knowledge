@@ -27,7 +27,7 @@ permalink: /java/collection/hash/
 
 *HashMap*实现了*Map*接口，即允许放入`key`为`null`的元素，也允许插入`value`为`null`的元素；除该类未实现同步外，其余跟`Hashtable`大致相同；跟*TreeMap*不同，该容器不保证元素顺序，根据需要该容器可能会对元素重新哈希，元素的顺序也会被重新打散，因此不同时间迭代同一个*HashMap*的顺序可能会不同。 根据对冲突的处理方式不同，哈希表有两种实现方式，一种开放地址方式(Open addressing)，另一种是冲突链表方式(Separate chaining with linked lists)。**Java7 HashMap采用的是冲突链表方式**
 
-![linked-buckets](https://caohonghua.github.io/java-worker/assets/images/java/collection/linked-buckets.png)
+![linked-buckets](https://caohonghua.github.io/java-worker/assets/images/java/collection/hash/linked-buckets.png)
 
 从上图容易看出，如果选择合适的哈希函数，`put()`和`get()`方法可以在常数时间内完成。但在对*HashMap*进行迭代时，需要遍历整个table以及后面跟的冲突链表。因此对于迭代比较频繁的场景，不宜将*HashMap*的初始大小设的过大。
 
@@ -41,7 +41,7 @@ permalink: /java/collection/hash/
 
 `get(Object key)`方法根据指定的`key`值返回对应的`value`，该方法调用了`getEntry(Object key)`得到相应的`entry`，然后返回`entry.getValue()`。因此`getEntry()`是算法的核心。 算法思想是首先通过`hash()`函数得到对应`bucket`的下标，然后依次遍历冲突链表，通过`key.equals(k)`方法来判断是否是要找的那个`entry`。
 
-![get](https://caohonghua.github.io/java-worker/assets/images/java/collection/get.png)
+![get](https://caohonghua.github.io/java-worker/assets/images/java/collection/hash/get.png)
 
 上图中`hash(k)&(table.length-1)`等价于`hash(k)%table.length`，原因是*HashMap*要求`table.length`必须是2的指数，因此`table.length-1`就是二进制低位全是1，跟`hash(k)`相与会将哈希值的高位全抹掉，剩下的就是余数了。
 
@@ -68,7 +68,7 @@ final Entry<K,V> getEntry(Object key) {
 
 `put(K key, V value)`方法是将指定的`key, value`对添加到`map`里。该方法首先会对`map`做一次查找，看是否包含该元组，如果已经包含则直接返回，查找过程类似于`getEntry()`方法；如果没有找到，则会通过`addEntry(int hash, K key, V value, int bucketIndex)`方法插入新的`entry`，插入方式为**头插法**。
 
-![put](https://caohonghua.github.io/java-worker/assets/images/java/collection/put.png)
+![put](https://caohonghua.github.io/java-worker/assets/images/java/collection/hash/put.png)
 
 ```java
 //addEntry()
