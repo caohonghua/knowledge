@@ -1,5 +1,5 @@
 ---
-permalink: /java/concurrency/overview/
+permalink: /java/concurrency/knowledge-points/
 ---
 
 ## 理论知识
