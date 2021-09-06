@@ -2,8 +2,6 @@
 permalink: /java/concurrency/multithreading/
 ---
 
-
-
 ## 线程基础
 
 * 线程状态转换
