@@ -81,6 +81,7 @@ class MyString{
 - final方法是可以被重载的
 
 **private final**
+
 类中所有private方法都隐式地指定为final的，由于无法取用private方法，所以也就不能覆盖它。可以对private方法增添final关键字，但这样做并没有什么好处。看下下面的例子：
 
 ```java
@@ -102,6 +103,7 @@ public class Son extends Base{
 Base和Son都有方法test(),但是这并不是一种覆盖，因为private所修饰的方法是隐式的final，也就是无法被继承，所以更不用说是覆盖了，在Son中的test()方法不过是属于Son的新成员罢了，Son进行向上转型得到father，但是father.test()是不可执行的，因为Base中的test方法是private的，无法被访问到
 
 **final方法是可以被重载的**
+
 我们知道父类的final方法是不能够被子类重写的，那么final方法可以被重载吗? 答案是可以的，下面代码是正确的。
 
 ```java
@@ -119,7 +121,7 @@ Java允许在参数列表中以声明的方式将参数指明为final，这意�
 
 #### 修饰变量
 
-> 规的用法比较简单，这里通过下面三个问题进一步说明。
+> 常规的用法比较简单，这里通过下面三个问题进一步说明。
 
 **所有的final修饰的字段都是编译期常量吗?**
 
@@ -144,6 +146,7 @@ public class Test {
 k的值由随机数对象决定，所以不是所有的final修饰的字段都是编译期常量，只是k的值在被初始化后无法被更改
 
 **static final**
+
 一个既是static又是final 的字段只占据一段不能改变的存储空间，它必须在定义的时候进行赋值，否则编译器将不予通过。
 ```java
 import java.util.Random;
@@ -166,9 +169,10 @@ k=2 k2=7
 k=8 k2=7
 ```
 
-我们可以发现对于不同的对象k的值是不同的，但是k2的值却是相同的，这是为什么呢? 因为static关键字所修饰的字段并不属于一个对象，而是属于这个类的。也可简单的理解为static final所修饰的字段仅占据内存的一个一份空间，一旦被初始化之后便不会被更改。
+我们可以发现对于不同的对象k的值是不同的，但是k2的值却是相同的，这是为什么呢? 因为static关键字所修饰的字段并不属于一个对象，而是属于这个类的。也可简单的理解为static final所修饰的字段仅占据内存的一份空间，一旦被初始化之后便不会被更改。
 
 **blank final**
+
 Java允许生成空白final，也就是说被声明为final但又没有给出定值的字段,但是必须在该字段被使用之前被赋值，这给予我们两种选择：
 
 - 在定义处进行赋值(这不叫空白final)
@@ -224,6 +228,7 @@ public class FinalDemo {
 假设线程A在执行writer()方法，线程B执行reader()方法。
 
 **写final域重排序规则**
+
 写final域的重排序规则禁止对final域的写重排序到构造函数之外，这个规则的实现主要包含了两个方面：
 
 - JMM禁止编译器把final域的写重排序到构造函数之外；
@@ -241,13 +246,14 @@ public class FinalDemo {
 由于a,b之间没有数据依赖性，普通域(普通变量)a可能会被重排序到构造函数之外，线程B就有可能读到的是普通变量a初始化之前的值(零值)，这样就可能出现错误。而final域变量b，根据重排序规则，会禁止final修饰的变量b重排序到构造函数之外，从而b能够正确赋值，线程B就能够读到final变量初始化后的值。 因此，写final域的重排序规则可以确保：在对象引用为任意线程可见之前，对象的final域已经被正确初始化过了，而普通域就不具有这个保障。比如在上例，线程B有可能就是一个未正确初始化的对象finalDemo。
 
 **读final域重排序规则**
+
 读final域重排序规则为：在一个线程中，初次读对象引用和初次读该对象包含的final域，JMM会禁止这两个操作的重排序。(注意，这个规则仅仅是针对处理器)，处理器会在读final域操作的前面插入一个LoadLoad屏障。实际上，读对象的引用和读该对象的final域存在间接依赖性，一般处理器不会重排序这两个操作。但是有一些处理器会重排序，因此，这条禁止重排序规则就是针对这些处理器而设定的。
 
 read()方法主要包含了三个操作：
 
 - 初次读引用变量finalDemo;
 - 初次读引用变量finalDemo的普通域a;
-- 初次读引用变量finalDemo的final与b;
+- 初次读引用变量finalDemo的final域b;
 
 假设线程A写过程没有重排序，那么线程A和线程B有一种的可能执行时序为下图：
 ![java-thread-x-key-final-2](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/final/java-thread-x-key-final-2.png)
