@@ -106,7 +106,7 @@ public native void unpark(Thread thread);
 
 * unpark函数，释放线程的许可，即激活调用park后阻塞的线程。这个函数不是安全的，调用这个函数时要确保线程依旧存活
 
-1. park函数
+**park函数**
 
 park函数有两个重载版本，方法摘要如下
 
@@ -156,7 +156,7 @@ public static void park() {
 * 其他某个线程中断当前线程。
 * 该调用不合逻辑地(即毫无理由地)返回。
 
-2. parkNanos函数
+**parkNanos函数**
 
 此函数表示在许可可用前禁用当前线程，并最多等待指定的等待时间。具体函数如下
 
@@ -175,7 +175,7 @@ public static void parkNanos(Object blocker, long nanos) {
 }
 ```
 
-3. parkUntil函数
+**parkUntil函数**
 
 此函数表示在指定的时限前禁用当前线程，除非许可可用, 具体函数如下:
 
@@ -193,7 +193,7 @@ public static void parkUntil(Object blocker, long deadline) {
 
 说明: 该函数也调用了两次setBlocker函数，deadline参数表示绝对时间，表示指定的时间。
 
-4. unpark函数
+**unpark函数**
 
 此函数表示如果给定线程的许可尚不可用，则使其可用。如果线程在 park 上受阻塞，则它将解除其阻塞状态。否则，保证下一次调用 park 不会受阻塞。如果给定线程尚未启动，则无法保证此操作有任何效果。具体函数如下:
 
