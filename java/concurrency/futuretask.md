@@ -1,5 +1,5 @@
 ---
-permalink: /java/concurrency/volatile/
+permalink: /java/concurrency/futuretask/
 ---
 
 

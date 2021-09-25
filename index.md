@@ -51,19 +51,19 @@
 * [ThreadLocal详解](/java-worker/java/concurrency/threadlocal/)
 
 ### Java IO/NIO/AIO
-* [知识体系]
-* [分类]
-* [设计模式：装饰者模式]
-* [InputStream源码解析]
-* [OutputStream源码解析]
-* [常见类使用]
-* [Unix-IO模型]
-* [BIO详解]
-* [NIO详解]
-* [IO多路复用详解]
-* [异步IO详解]
-* [Netty框架]
-* [零拷贝实现]
+* [知识体系](/java-worker/java/io/overview/)
+* [分类](/java-worker/java/io/classification/)
+* [设计模式：装饰者模式](/java-worker/java/io/decorator/)
+* [InputStream源码解析](/java-worker/java/io/inputstream/)
+* [OutputStream源码解析](/java-worker/java/io/outputstream/)
+* [常见类使用](/java-worker/java/io/common-use/)
+* [Unix-IO模型](/java-worker/java/io/unix-io/)
+* [BIO详解](/java-worker/java/io/bio/)
+* [NIO详解](/java-worker/java/io/nio/)
+* [IO多路复用详解](/java-worker/java/io/multiplexing/)
+* [异步IO详解](/java-worker/java/io/aio/)
+* [Netty框架](/java-worker/java/io/netty/)
+* [零拷贝实现](/java-worker/java/io/zero-copy/)
 
 ### JVM
 * [知识体系]
