@@ -34,7 +34,7 @@
 * [JUC锁：LockSupport详解](/java-worker/java/concurrency/locksupport/)
 * [JUC锁：锁核心类AQS详解](/java-worker/java/concurrency/aqs/)
 * [JUC锁：ReentrantLock详解](/java-worker/java/concurrency/reentrantlock/)
-* [JUC锁：ReentrantReadWriteLock详解](/java-worker/java/concurrency/reentrantreadwirtelock/)
+* [JUC锁：ReentrantReadWriteLock详解](/java-worker/java/concurrency/reentrantreadwritelock/)
 * [JUC集合：ConcurrentHashMap详解](/java-worker/java/concurrency/concurrenthashmap/)
 * [JUC集合：CopyOnWriteArrayList详解](/java-worker/java/concurrency/copyonwritearraylist/)
 * [JUC集合：ConcurrentLinkedQueue详解](/java-worker/java/concurrency/concurrentlinkedqueue/)
