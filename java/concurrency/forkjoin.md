@@ -2,9 +2,6 @@
 permalink: /java/concurrency/forkjoin/
 ---
 
-
-![java-thread-x-executors-2](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/threadpoolexecutor/java-thread-x-executors-2.png)
-
 ## JUC线程池: Fork/Join框架详解
 
 > ForkJoinPool 是JDK 7加入的一个线程池类。Fork/Join 技术是分治算法(Divide-and-Conquer)的并行实现，它是一项可以获得良好的并行性能的简单且高效的设计技术。目的是为了帮助我们更好地利用多处理器带来的好处，使用所有可用的运算能力来提升应用的性能
