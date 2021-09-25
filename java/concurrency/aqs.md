@@ -4,7 +4,7 @@ permalink: /java/concurrency/aqs/
 
 ## JUC锁：锁核心类AQS详解
 
-> AbstractQueuedSynchronizer抽象类是核心，需要重点掌握。它提供了一个基于FIFO队列，可以用于构建锁或者其他相关同步装置的基础框架
+> AbstractQueuedSynchronizer抽象类是核心，需要重点掌握。它提供了一个基于FIFO队列，可以用于构建锁或者其他相关同步装置的基础框架.
 
 * 带着BAT大厂的面试问题去理解
 * AbstractQueuedSynchronizer简介
@@ -27,7 +27,7 @@ permalink: /java/concurrency/aqs/
 ### 带着BAT大厂的面试问题去理解
 
 * 什么是AQS? 为什么它是核心?
-* QS的核心思想是什么? 它是怎么实现的? 底层数据结构等
+* AQS的核心思想是什么? 它是怎么实现的? 底层数据结构等
 * AQS有哪些核心的方法?
 * AQS定义什么样的资源获取方式? AQS定义了两种资源获取方式：独占(只有一个线程能访问执行，又根据是否按队列的顺序分为公平锁和非公平锁，如ReentrantLock) 和共享(多个线程可同时访问执行，如Semaphore、CountDownLatch、 CyclicBarrier )。ReentrantReadWriteLock可以看成是组合式，允许多个线程同时对某一资源进行读
 * AQS底层使用了什么样的设计模式? 模板
@@ -1125,7 +1125,7 @@ Thread[t2,5,main] running
 
 ![java-thread-x-juc-aqs-6](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-6.png)
 
-说明: 经过一系列的方法调用，最后达到的状态是禁用t2线程，因为调用了LockSupport.lock
+说明: 经过一系列的方法调用，最后达到的状态是禁用t2线程，因为调用了LockSupport.park
 
 * t1线程调用lock.unlock，其方法调用顺序如下，只给出了主要的方法调用。
 
