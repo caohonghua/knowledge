@@ -52,7 +52,7 @@
 
 ### Java IO/NIO/AIO
 * [知识体系](/java-worker/java/io/overview/)
-* [分类](/java-worker/java/io/classification/)
+* [分类](/java-worker/java/io/category/)
 * [设计模式：装饰者模式](/java-worker/java/io/decorator/)
 * [InputStream源码解析](/java-worker/java/io/inputstream/)
 * [OutputStream源码解析](/java-worker/java/io/outputstream/)
