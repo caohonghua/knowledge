@@ -1,5 +1,5 @@
 ---
-permalink: /java/concurrency/aqs/
+permalink: /java/io/overview/
 ---
 
 ## 知识体系
