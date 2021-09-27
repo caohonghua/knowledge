@@ -51,6 +51,8 @@ public boolean markSupported()
 
 ### 源码实现
 
+#### Inputstream
+
 ```java
 public abstract class InputStream implements Closeable {
     private static final int SKIP_BUFFER_SIZE = 2048;  //用于skip方法，和skipBuffer相关
@@ -151,7 +153,7 @@ public abstract class InputStream implements Closeable {
 }
 ```
 
-### FilterInputStream
+#### FilterInputStream
 
 ```java
 public class FilterInputStream extends InputStream {
@@ -191,7 +193,7 @@ public class FilterInputStream extends InputStream {
 }
 ```
 
-### ByteArrayInputStream
+#### ByteArrayInputStream
 
 ```java
 public class ByteArrayInputStream extends InputStream {
@@ -274,7 +276,7 @@ public synchronized int available() {
 }
 ```
 
-### BufferedInputStream
+#### BufferedInputStream
 
 ```java
 public class BufferedInputStream extends FilterInputStream {
@@ -469,7 +471,7 @@ public BufferedInputStream(InputStream in) {
 }
 ```
 
-### PipedInputStream
+#### PipedInputStream
 
 ```java
 public class PipedInputStream extends InputStream {
