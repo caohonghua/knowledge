@@ -66,23 +66,23 @@
 * [零拷贝实现](/java-worker/java/io/zero-copy/)
 
 ### JVM
-* [知识体系]
-* [JVM基础：类字节码详解]
-* [JVM基础：Java类加载机制]
-* [JVM基础：JVM内存结构]
-* [JVM基础：Java内存模型引入]
-* [JVM基础：Java内存模型详解]
-* [JVM基础：Java垃圾回收基础]
-* [JVM基础：Java垃圾回收器G1详解]
-* [调试排错：JVM调优参数]
-* [调试排错：Java-OOM分析]
-* [调试排错：Java线程Dump分析]
-* [调试排错：Java问题排查：Linux命令]
-* [调试排错：Java问题排查：工具单]
-* [调试排错：9种常见的CMS-GC问题分析与解决]
-* [调试排错：Java动态调试技术原理]
-* [调试排错：Java应用在线调试Arthas]
-* [调试排错：使用IDEA本地调试和远程调试]
+* [知识体系](/java-worker/java/jvm/overview/)
+* [JVM基础：类字节码详解](/java-workder/java/jvm/bytecode/)
+* [JVM基础：Java类加载机制](/java-workder/java/jvm/class-loading/)
+* [JVM基础：JVM内存结构](/java-worker/java/jvm/memory-structure/)
+* [JVM基础：Java内存模型引入](/java-worker/java/jvm/memory-model-introduction/)
+* [JVM基础：Java内存模型详解](/java-worker/java/jvm/detailed-memory-model/)
+* [JVM基础：Java垃圾回收基础](/java-worker/java/jvm/gc-basics/)
+* [JVM基础：Java垃圾回收器G1详解](/java-worker/java/jvm/detailed-g1/)
+* [调试排错：JVM调优参数](/java-worker/java/jvm/tuning-parameters/)
+* [调试排错：Java-OOM分析](/java-worker/java/jvm/oom/)
+* [调试排错：Java线程Dump分析](/java-worker/java/jvm/dump/)
+* [调试排错：Java问题排查：Linux命令](/java-worker/java/jvm/linux/)
+* [调试排错：Java问题排查：工具单](/java-worker/java/jvm/tools/)
+* [调试排错：9种常见的CMS-GC问题分析与解决](/java-worker/java/jvm/cms-gc/)
+* [调试排错：Java动态调试技术原理](/java-worker/java/jvm/dynamic-debug/)
+* [调试排错：Java应用在线调试Arthas](/java-worker/java/jvm/arthas/)
+* [调试排错：使用IDEA本地调试和远程调试](/java-worker/java/jvm/idea-debug/)
 
 ### API
 * <a href="https://docs.oracle.com/javase/8/docs/api/" target="_blank">Java8</a>
