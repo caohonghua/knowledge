@@ -70,7 +70,7 @@
 * [JVM基础：类字节码详解](/java-worker/java/jvm/bytecode/)
 * [JVM基础：Java类加载机制](/java-worker/java/jvm/class-loading/)
 * [JVM基础：JVM内存结构](/java-worker/java/jvm/memory-structure/)
-* [JVM基础：Java内存模型引入](/java-worker/java/jvm/memory-model-introduction/)
+* [JVM基础：Java内存模型引入](/java-worker/java/jvm/memory-model/)
 * [JVM基础：Java内存模型详解](/java-worker/java/jvm/detailed-memory-model/)
 * [JVM基础：Java垃圾回收基础](/java-worker/java/jvm/gc-basics/)
 * [JVM基础：Java垃圾回收器G1详解](/java-worker/java/jvm/detailed-g1/)
