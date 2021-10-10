@@ -304,7 +304,7 @@ pool-1-thread-4 End.
 其实java线程池的实现原理很简单，说白了就是一个线程集合workerSet和一个阻塞队列workQueue。当用户向线程池提交一个任务(也就是线程)时，线程池会先将任务放入workQueue中。workerSet中的线程会不断的从workQueue中获取线程然后执行。当workQueue中没有任务的时候，worker就会阻塞，直到队列中有任务了就取出来继续执行。
 
 
-![java-thread-x-executors-1](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/threadpoolexecutor/java-thread-x-executors-1.png)
+![java-thread-x-executors-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/threadpoolexecutor/java-thread-x-executors-1.png)
 
 #### Execute原理
 
@@ -470,7 +470,7 @@ private static int ctlOf(int rs, int wc) { return rs | wc; }
 * TIDYING : 2 << COUNT_BITS，即高3位为010, 所有的任务都已经终止；
 * TERMINATED: 3 << COUNT_BITS，即高3位为011, terminated()方法已经执行完成
 
-![java-thread-x-executors-2](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/threadpoolexecutor/java-thread-x-executors-2.png)
+![java-thread-x-executors-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/threadpoolexecutor/java-thread-x-executors-2.png)
 
 #### 任务的执行
 
@@ -778,7 +778,7 @@ allowCoreThreadTimeOut为false，线程即使空闲也不会被销毁；倘若�
 
 #### 任务的提交
 
-![java-thread-x-executors-3](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/threadpoolexecutor/java-thread-x-executors-3.png)
+![java-thread-x-executors-3](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/threadpoolexecutor/java-thread-x-executors-3.png)
 
 1. submit任务，等待线程池execute
 2. 执行FutureTask类的get方法时，会把主线程封装成WaitNode节点并保存在waiters链表中， 并阻塞等待运行结果；

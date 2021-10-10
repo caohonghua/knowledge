@@ -55,7 +55,7 @@ public class Semaphore implements java.io.Serializable {}
 
 Semaphore总共有三个内部类，并且三个内部类是紧密相关的，下面先看三个类的关系
 
-![java-thread-x-executors-1](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-1.png)
+![java-thread-x-executors-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-1.png)
 
 说明: Semaphore与ReentrantLock的内部类的结构相同，类内部总共存在Sync、NonfairSync、FairSync三个类，NonfairSync与FairSync类继承自Sync类，Sync类继承自AbstractQueuedSynchronizer抽象类。下面逐个进行分析
 
@@ -136,7 +136,7 @@ abstract static class Sync extends AbstractQueuedSynchronizer {
 说明: Sync类的属性相对简单，只有一个版本号，Sync类存在如下方法和作用如下
 
 
-![java-thread-x-executors-2](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-2.png)
+![java-thread-x-executors-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-2.png)
 
 #### 类的内部类 - NonfairSync类
 
@@ -232,7 +232,7 @@ public void acquire() throws InterruptedException {
 最终可以获取大致的方法调用序列(假设使用非公平策略)。如下图所示。
 
 
-![java-thread-x-executors-3](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-3.png)
+![java-thread-x-executors-3](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-3.png)
 
 说明: 上图只是给出了大体会调用到的方法，和具体的示例可能会有些差别，之后会根据具体的示例进行分析
 
@@ -250,7 +250,7 @@ public void release() {
 
 最终可以获取大致的方法调用序列(假设使用非公平策略)。如下图所示:
 
-![java-thread-x-executors-4](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-4.png)
+![java-thread-x-executors-4](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-4.png)
 
 说明: 上图只是给出了大体会调用到的方法，和具体的示例可能会有些差别，之后会根据具体的示例进行分析。
 
@@ -326,50 +326,50 @@ t2 release successfully
 
 说明: 首先，生成一个信号量，信号量有10个许可，然后，main，t1，t2三个线程获取许可运行，根据结果，可能存在如下的一种时序。
 
-![java-thread-x-executors-5](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-5.png)
+![java-thread-x-executors-5](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-5.png)
 
 
 说明: 如上图所示，首先，main线程执行acquire操作，并且成功获得许可，之后t1线程执行acquire操作，成功获得许可，之后t2执行acquire操作，由于此时许可数量不够，t2线程将会阻塞，直到许可可用。之后t1线程释放许可，main线程释放许可，此时的许可数量可以满足t2线程的要求，所以，此时t2线程会成功获得许可运行，t2运行完成后释放许可。下面进行详细分析
 
 * main线程执行semaphore.acquire操作。主要的函数调用如下图所示。
 
-![java-thread-x-executors-6](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-6.png)
+![java-thread-x-executors-6](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-6.png)
 
 说明: 此时，可以看到只是AQS的state变为了5，main线程并没有被阻塞，可以继续运行。
 
 * t1线程执行semaphore.acquire操作。主要的函数调用如下图所示。
 
-![java-thread-x-executors-7](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-7.png)
+![java-thread-x-executors-7](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-7.png)
 
 说明: 此时，可以看到只是AQS的state变为了2，t1线程并没有被阻塞，可以继续运行。
 
 * t2线程执行semaphore.acquire操作。主要的函数调用如下图所示。
 
-![java-thread-x-executors-8](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-8.png)
+![java-thread-x-executors-8](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-8.png)
 
 说明: 此时，t2线程获取许可不会成功，之后会导致其被禁止运行，值得注意的是，AQS的state还是为2
 
 * t1执行semaphore.release操作。主要的函数调用如下图所示。
 
-![java-thread-x-executors-9](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-9.png)
+![java-thread-x-executors-9](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-9.png)
 
 说明: 此时，t2线程将会被unpark，并且AQS的state为5，t2获取cpu资源后可以继续运行。
 
 * main线程执行semaphore.release操作。主要的函数调用如下图所示。
 
-![java-thread-x-executors-10](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-10.png)
+![java-thread-x-executors-10](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-10.png)
 
 说明: 此时，t2线程还会被unpark，但是不会产生影响，此时，只要t2线程获得CPU资源就可以运行了。此时，AQS的state为10。
 
 * t2获取CPU资源，继续运行，此时t2需要恢复现场，回到parkAndCheckInterrupt函数中，也是在should继续运行。主要的函数调用如下图所示。
 
-![java-thread-x-executors-11](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-11.png)
+![java-thread-x-executors-11](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-11.png)
 
 说明: 此时，可以看到，Sync queue中只有一个结点，头结点与尾节点都指向该结点，在setHeadAndPropagate的函数中会设置头结点并且会unpark队列中的其他结点
 
 * t2线程执行semaphore.release操作。主要的函数调用如下图所示。
 
-![java-thread-x-executors-12](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-12.png)
+![java-thread-x-executors-12](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/semaphore/java-thread-x-semaphore-12.png)
 
 说明: t2线程经过release后，此时信号量的许可又变为10个了，此时Sync queue中的结点还是没有变化。
 

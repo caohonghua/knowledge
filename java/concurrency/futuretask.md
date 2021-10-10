@@ -38,7 +38,7 @@ FutureTask 为 Future 提供了基础实现，如获取任务执行结果(get)�
 
 ### FutureTask类关系
 
-![java-thread-x-juc-futuretask-1](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/futuretask/java-thread-x-juc-futuretask-1.png)
+![java-thread-x-juc-futuretask-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/futuretask/java-thread-x-juc-futuretask-1.png)
 
 可以看到,FutureTask实现了RunnableFuture接口，则RunnableFuture接口继承了Runnable接口和Future接口，所以FutureTask既能当做一个Runnable直接被Thread执行，也能作为Future用来得到Callable的计算结果。 
 
@@ -126,7 +126,7 @@ private static final int INTERRUPTED  = 6;
 
 各个状态之间的可能转换关系如下图所示:
 
-![java-thread-x-juc-futuretask-2](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/futuretask/java-thread-x-juc-futuretask-2.png)
+![java-thread-x-juc-futuretask-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/futuretask/java-thread-x-juc-futuretask-2.png)
 
 #### 构造函数
 

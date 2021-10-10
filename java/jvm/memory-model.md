@@ -24,7 +24,7 @@ permalink: /java/jvm/memory-model/
 
 JVM内部使用的Java内存模型在线程栈和堆之间划分内存。 此图从逻辑角度说明了Java内存模型：
 
-![java-memory-model-1](https://caohonghua.github.io/java-worker/assets/images/java/jvm/memory-model/java-memory-model-1.png)
+![java-memory-model-1](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-model/java-memory-model-1.png)
 
 #### 堆栈里面放了什么?
 
@@ -34,7 +34,7 @@ JVM内部使用的Java内存模型在线程栈和堆之间划分内存。 此图
 
 堆包含了在Java应用程序中创建的所有对象，无论创建该对象的线程是什么。 这包括基本类型的包装类(例如Byte，Integer，Long等)。 无论是创建对象并将其分配给局部变量，还是创建为另一个对象的成员变量，该对象仍然存储在堆上。
 
-![java-memory-model-2](https://caohonghua.github.io/java-worker/assets/images/java/jvm/memory-model/java-memory-model-2.png)
+![java-memory-model-2](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-model/java-memory-model-2.png)
 
 局部变量可以是基本类型，在这种情况下，它完全保留在线程堆栈上。
 
@@ -49,7 +49,7 @@ JVM内部使用的Java内存模型在线程栈和堆之间划分内存。 此图
 
 所有具有对象引用的线程都可以访问堆上的对象。 当一个线程有权访问一个对象时，它也可以访问该对象的成员变量。 如果两个线程同时在同一个对象上调用一个方法，它们都可以访问该对象的成员变量，但每个线程都有自己的局部变量副本
 
-![java-memory-model-3](https://caohonghua.github.io/java-worker/assets/images/java/jvm/memory-model/java-memory-model-3.png)
+![java-memory-model-3](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-model/java-memory-model-3.png)
 
 两个线程有一组局部变量。 其中一个局部变量(局部变量2)指向堆上的共享对象(对象3)。 两个线程各自对同一对象具有不同的引用。 它们的引用是局部变量，因此存储在每个线程的线程堆栈中(在每个线程堆栈上)。 但是，这两个不同的引用指向堆上的同一个对象
 
@@ -128,7 +128,7 @@ methodOne()声明一个局部基本类型变量(类型为int的localVariable1)�
 
 这是现代计算机硬件架构的简化图
 
-![java-memory-model-4](https://caohonghua.github.io/java-worker/assets/images/java/jvm/memory-model/java-memory-model-4.png)
+![java-memory-model-4](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-model/java-memory-model-4.png)
 
 现代计算机通常有2个或更多CPU。 其中一些CPU也可能有多个内核。 关键是，在具有2个或更多CPU的现代计算机上，可以同时运行多个线程。 每个CPU都能够在任何给定时间运行一个线程。 这意味着如果您的Java应用程序是多线程的，线程真的在可能同时运行
 
@@ -145,7 +145,7 @@ methodOne()声明一个局部基本类型变量(类型为int的localVariable1)�
 
 如前所述，Java内存模型和硬件内存架构是不同的。 硬件内存架构不区分线程堆栈和堆。 在硬件上，线程堆栈和堆都位于主存储器中。 线程堆栈和堆的一部分有时可能存在于CPU高速缓存和内部CPU寄存器中。 这在图中说明：
 
-![java-memory-model-5](https://caohonghua.github.io/java-worker/assets/images/java/jvm/memory-model/java-memory-model-5.png)
+![java-memory-model-5](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-model/java-memory-model-5.png)
 
 
 当对象和变量可以存储在计算机的各种不同存储区域中时，可能会出现某些问题。 两个主要问题是：
@@ -161,7 +161,7 @@ methodOne()声明一个局部基本类型变量(类型为int的localVariable1)�
 
 下图描绘了该情况。 在左CPU上运行的一个线程将共享对象复制到其CPU缓存中，并将其count变量更改为2.对于在右边的CPU上运行的其他线程，此更改不可见，因为计数更新尚未刷新回主内存中.
 
-![java-memory-model-6](https://caohonghua.github.io/java-worker/assets/images/java/jvm/memory-model/java-memory-model-6.png)
+![java-memory-model-6](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-model/java-memory-model-6.png)
 
 要解决此问题，您可以使用Java的volatile关键字。 volatile关键字可以确保直接从主内存读取给定变量，并在更新时始终写回主内存
 
@@ -178,6 +178,6 @@ methodOne()声明一个局部基本类型变量(类型为int的localVariable1)�
 
 该图说明了如上所述的竞争条件问题的发生：
 
-![java-memory-model-7](https://caohonghua.github.io/java-worker/assets/images/java/jvm/memory-model/java-memory-model-7.png)
+![java-memory-model-7](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-model/java-memory-model-7.png)
 
 要解决此问题，您可以使用Java synchronized块。 同步块保证在任何给定时间只有一个线程可以进入代码的给定关键部分。 同步块还保证在同步块内访问的所有变量都将从主存储器中读入，当线程退出同步块时，所有更新的变量将再次刷新回主存储器，无论变量是不是声明为volatile 

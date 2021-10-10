@@ -19,7 +19,7 @@ permalink: /java/io/aio/
 
 异步IO则是采用“订阅-通知”模式: 即应用程序向操作系统注册IO监听，然后继续做自己的事情。当操作系统发生IO事件，并且准备好数据后，在主动通知应用程序，触发相应的函数
 
-![java-io-aio-1](https://caohonghua.github.io/java-worker/assets/images/java/io/aio/java-io-aio-1.png)
+![java-io-aio-1](https://caohonghua.github.io/knowledge/assets/images/java/io/aio/java-io-aio-1.png)
 
 和同步IO一样，异步IO也是由操作系统进行支持的。微软的windows系统提供了一种异步IO技术: IOCP(I/O Completion Port，I/O完成端口)
 
@@ -29,7 +29,7 @@ Linux下由于没有这种异步IO技术，所以使用的是epoll(上文介绍�
 
 #### JAVA AIO框架简析
 
-![java-io-aio-2](https://caohonghua.github.io/java-worker/assets/images/java/io/aio/java-io-aio-2.png)
+![java-io-aio-2](https://caohonghua.github.io/knowledge/assets/images/java/io/aio/java-io-aio-2.png)
 
 这里通过这个结构分析要告诉各位读者JAVA AIO中类设计和操作系统的相关性
 
@@ -46,7 +46,7 @@ Linux下由于没有这种异步IO技术，所以使用的是epoll(上文介绍�
 
 特别说明一下，请注意图中的“java.nio.channels.NetworkChannel”接口，这个接口同样被JAVA NIO框架实现了，如下图所示:
 
-![java-io-aio-3](https://caohonghua.github.io/java-worker/assets/images/java/io/aio/java-io-aio-3.png)
+![java-io-aio-3](https://caohonghua.github.io/knowledge/assets/images/java/io/aio/java-io-aio-3.png)
 
 #### 代码实例
 
@@ -260,11 +260,11 @@ JAVA AIO框架中，只实现了两种网络IO通道“AsynchronousServerSocketC
 
 在测试过程中，我们启动了两个客户端(客户端用什么语言来写都行，用阻塞或者非阻塞方式也都行，只要是支持 TCP Socket套接字的就行，然后我们观察服务器端对这两个客户端通道的处理情况:
 
-![java-io-aio-3-1](https://caohonghua.github.io/java-worker/assets/images/java/io/aio/java-io-aio-3-1.png)
+![java-io-aio-3-1](https://caohonghua.github.io/knowledge/assets/images/java/io/aio/java-io-aio-3-1.png)
 
 可以看到，在服务器端分别为客户端1和客户端2创建的两个WindowsAsynchronousSocketChannelImpl对象为:
 
-![java-io-aio-4](https://caohonghua.github.io/java-worker/assets/images/java/io/aio/java-io-aio-4.png)
+![java-io-aio-4](https://caohonghua.github.io/knowledge/assets/images/java/io/aio/java-io-aio-4.png)
 
 客户端1: WindowsAsynchronousSocketChannelImpl: 760 | FileDescriptor: 762
 
@@ -272,7 +272,7 @@ JAVA AIO框架中，只实现了两种网络IO通道“AsynchronousServerSocketC
 
 接下来，我们让两个客户端发送信息到服务器端，并观察服务器端的处理情况。客户端1发来的消息和客户端2发来的消息，在服务器端的处理情况如下图所示:
 
-![java-io-aio-5](https://caohonghua.github.io/java-worker/assets/images/java/io/aio/java-io-aio-5.png)
+![java-io-aio-5](https://caohonghua.github.io/knowledge/assets/images/java/io/aio/java-io-aio-5.png)
 
 客户端1: WindowsAsynchronousSocketChannelImpl: 760 | FileDescriptor: 762 | SocketChannelReadHandle: 803 | HeapByteBuffer: 808
 

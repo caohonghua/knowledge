@@ -307,7 +307,7 @@ class VolatileExample {
 - 根据 volatile 规则：2 happens-before 3。
 - 根据 happens-before 的传递性规则：1 happens-before 4。
 
-![java-thread-x-key-volatile-1](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/volatile/java-thread-x-key-volatile-1.png)
+![java-thread-x-key-volatile-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/volatile/java-thread-x-key-volatile-1.png)
 
 因为以上规则，当线程 A 将 volatile 变量 flag 更改为 true 后，线程 B 能够迅速感知。
 
@@ -315,7 +315,7 @@ class VolatileExample {
 
 为了性能优化，JMM 在不改变正确语义的前提下，会允许编译器和处理器对指令序列进行重排序。JMM 提供了内存屏障阻止这种重排序。 Java 编译器会在生成指令系列时在适当的位置会插入内存屏障指令来禁止特定类型的处理器重排序。 JMM 会针对编译器制定 volatile 重排序规则表。
 
-![java-thread-x-key-volatile-2](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/volatile/java-thread-x-key-volatile-2.png)
+![java-thread-x-key-volatile-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/volatile/java-thread-x-key-volatile-2.png)
 
 " NO " 表示禁止重排序。
 
@@ -338,7 +338,7 @@ volatile 写是在前面和后面分别插入内存屏障，而 volatile 读操�
 | LoadStore 屏障 | 禁止下面所有的普通写操作和上面的 volatile 读重排序。        |
 
 
-![java-thread-x-key-volatile-3](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/volatile/java-thread-x-key-volatile-3.png)
+![java-thread-x-key-volatile-3](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/volatile/java-thread-x-key-volatile-3.png)
 
 ### volatile的应用场景
 

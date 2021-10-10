@@ -56,11 +56,11 @@ public final class Class<T> implements java.io.Serializable,                    
 
 1. 类加载机制流程
 
-![类加载机制流程](https://caohonghua.github.io/java-worker/assets/images/java/basic/reflect/class-loading-process.png)
+![类加载机制流程](https://caohonghua.github.io/knowledge/assets/images/java/basic/reflect/class-loading-process.png)
 
 2. 类的加载
 
-![类的加载](https://caohonghua.github.io/java-worker/assets/images/java/basic/reflect/class-loading.png)
+![类的加载](https://caohonghua.github.io/knowledge/assets/images/java/basic/reflect/class-loading.png)
 
 
 
@@ -290,7 +290,7 @@ public class HelloReflect {    public static void main(String[] args) {        t
 
 **来看执行流程**
 
-![反射执行流程](https://caohonghua.github.io/java-worker/assets/images/java/basic/reflect/reflect-exection-flow.png)
+![反射执行流程](https://caohonghua.github.io/knowledge/assets/images/java/basic/reflect/reflect-exection-flow.png)
 
 #### 反射获取类实例
 

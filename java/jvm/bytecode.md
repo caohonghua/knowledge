@@ -29,7 +29,7 @@ permalink: /java/jvm/bytecode/
 
 * JVM也不再只支持Java，由此衍生出了许多基于JVM的编程语言，如Groovy, Scala, Koltin等等
 
-![java-jvm-class-1](https://caohonghua.github.io/java-worker/assets/images/java/jvm/bytecode/java-jvm-class-1.png)
+![java-jvm-class-1](https://caohonghua.github.io/knowledge/assets/images/java/jvm/bytecode/java-jvm-class-1.png)
 
 
 ### Java字节码文件
@@ -44,7 +44,7 @@ Class文件采用一种伪结构来存储数据，它有两种类型：无符号
 
 在理解之前先从整体看下java字节码文件包含了哪些类型的数据：
 
-![java-jvm-class-2](https://caohonghua.github.io/java-worker/assets/images/java/jvm/bytecode/java-jvm-class-2.png)
+![java-jvm-class-2](https://caohonghua.github.io/knowledge/assets/images/java/jvm/bytecode/java-jvm-class-2.png)
 
 #### 从一个例子开始
 

@@ -28,7 +28,7 @@ permalink: /java/collection/relation/
 
 ### 1. 知识体系结构
 
-![java_collections_overview](https://caohonghua.github.io/java-worker/assets/images/java/collection/relation/overview.png)
+![java_collections_overview](https://caohonghua.github.io/knowledge/assets/images/java/collection/relation/overview.png)
 
 
 

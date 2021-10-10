@@ -24,7 +24,7 @@ permalink: /java/collection/linkedlist/
 
 *LinkedList*同时实现了*List*接口和*Deque*接口，也就是说它既可以看作一个顺序容器，又可以看作一个队列(*Queue*)，同时又可以看作一个栈(*Stack*)。这样看来，*LinkedList*简直就是个全能冠军。当你需要使用栈或者队列时，可以考虑使用*LinkedList*，一方面是因为Java官方已经声明不建议使用*Stack*类，更遗憾的是，Java里根本没有一个叫做*Queue*的类(它是个接口名字)。关于栈或队列，现在的首选是*ArrayDeque*，它有着比*LinkedList*(当作栈或队列使用时)有着更好的性能。
 
-![LinkedList_base](https://caohonghua.github.io/java-worker/assets/images/java/collection/linkedlist/base.png)
+![LinkedList_base](https://caohonghua.github.io/knowledge/assets/images/java/collection/linkedlist/base.png)
 
 *LinkedList*的实现方式决定了所有跟下标相关的操作都是线性时间，而在首段或者末尾删除元素只需要常数时间。为追求效率*LinkedList*没有实现同步(synchronized)，如果需要多个线程并发访问，可以先采用`Collections.synchronizedList()`方法对其进行包装
 
@@ -144,7 +144,7 @@ permalink: /java/collection/linkedlist/
 
 `remove()`方法也有两个版本，一个是删除跟指定元素相等的第一个元素`remove(Object o)`，另一个是删除指标下标处的元素`remove(int index)`。
 
-![LinkedList_remove](https://caohonghua.github.io/java-worker/assets/images/java/collection/linkedlist/remove.png)
+![LinkedList_remove](https://caohonghua.github.io/knowledge/assets/images/java/collection/linkedlist/remove.png)
 删除元素 - 指的是删除第一次出现的这个元素, 如果没有这个元素，则返回false；判读的依据是equals方法， 如果equals，则直接unlink这个node；由于LinkedList可存放null元素，故也可以删除第一次出现null的元素；
 
 ```java
@@ -345,7 +345,7 @@ permalink: /java/collection/linkedlist/
 
 ```
 
-![LinkedList_add](https://caohonghua.github.io/java-worker/assets/images/java/collection/linkedlist/add.png)
+![LinkedList_add](https://caohonghua.github.io/knowledge/assets/images/java/collection/linkedlist/add.png)
 
 `add(int index, E element)`, 当index==size时，等同于add(E e); 如果不是，则分两步: 1.先根据index找到要插入的位置,即node(index)方法；2.修改引用，完成插入操作
 

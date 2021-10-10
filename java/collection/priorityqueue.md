@@ -21,7 +21,7 @@ permalink: /java/collection/priorityqueue/
 
 Java中*PriorityQueue*实现了*Queue*接口，不允许放入`null`元素；其通过堆实现，具体说是通过完全二叉树(*complete binary tree*)实现的**小顶堆**(任意一个非叶子节点的权值，都不大于其左右子节点的权值)，也就意味着可以通过数组来作为*PriorityQueue*的底层实现。
 
-![min-heap](https://caohonghua.github.io/java-worker/assets/images/java/collection/priorityqueue/min-heap.png)
+![min-heap](https://caohonghua.github.io/knowledge/assets/images/java/collection/priorityqueue/min-heap.png)
 
 上图中我们给每个元素按照层序遍历的方式进行了编号，如果你足够细心，会发现父节点和子节点的编号是有联系的，更确切的说父子节点的编号之间有如下关系:
 
@@ -44,7 +44,7 @@ parentNo = (nodeNo-1)/2
 
 `add(E e)`和`offer(E e)`的语义相同，都是向优先队列中插入元素，只是`Queue`接口规定二者对插入失败时的处理不同，前者在插入失败时抛出异常，后则则会返回`false`。对于*PriorityQueue*这两个方法其实没什么差别。
 
-![sift-up](https://caohonghua.github.io/java-worker/assets/images/java/collection/priorityqueue/sift-up.png)
+![sift-up](https://caohonghua.github.io/knowledge/assets/images/java/collection/priorityqueue/sift-up.png)
 
 新加入的元素可能会破坏小顶堆的性质，因此需要进行必要的调整
 
@@ -95,7 +95,7 @@ private void siftUp(int k, E x) {
 
 `element()`和`peek()`的语义完全相同，都是获取但不删除队首元素，也就是队列中权值最小的那个元素，二者唯一的区别是当方法失败时前者抛出异常，后者返回`null`。根据小顶堆的性质，堆顶那个元素就是全局最小的那个；由于堆用数组表示，根据下标关系，`0`下标处的那个元素既是堆顶元素。所以**直接返回数组`0`下标处的那个元素即可**。
 
-![peek](https://caohonghua.github.io/java-worker/assets/images/java/collection/priorityqueue/peek.png)
+![peek](https://caohonghua.github.io/knowledge/assets/images/java/collection/priorityqueue/peek.png)
 
 代码也就非常简洁:
 
@@ -116,7 +116,7 @@ public E peek() {
 
 `remove()`和`poll()`方法的语义也完全相同，都是获取并删除队首元素，区别是当方法失败时前者抛出异常，后者返回`null`。由于删除操作会改变队列的结构，为维护小顶堆的性质，需要进行必要的调整。
 
-![sift-down](https://caohonghua.github.io/java-worker/assets/images/java/collection/priorityqueue/sift-down.png)
+![sift-down](https://caohonghua.github.io/knowledge/assets/images/java/collection/priorityqueue/sift-down.png)
 
 代码如下:
 
@@ -168,7 +168,7 @@ private void siftDown(int k, E x) {
 
 `remove(Object o)`方法用于删除队列中跟`o`相等的某一个元素(如果有多个相等，只删除一个)，该方法不是*Queue*接口内的方法，而是*Collection*接口的方法。由于删除操作会改变队列结构，所以要进行调整；又由于删除元素的位置可能是任意的，所以调整过程比其它函数稍加繁琐。具体来说，`remove(Object o)`可以分为2种情况: 1. 删除的是最后一个元素。直接删除即可，不需要调整。2. 删除的不是最后一个元素，从删除点开始以最后一个元素为参照调用一次`siftDown()`即可。此处不再赘述。
 
-![remove](https://caohonghua.github.io/java-worker/assets/images/java/collection/priorityqueue/remove.png)
+![remove](https://caohonghua.github.io/knowledge/assets/images/java/collection/priorityqueue/remove.png)
 
 具体代码如下:
 

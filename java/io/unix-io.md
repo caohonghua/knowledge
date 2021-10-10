@@ -52,11 +52,11 @@ Unix 下有五种 I/O 模型:
 ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *src_addr, socklen_t *addrlen);
 ```
 
-![unix-io-1](https://caohonghua.github.io/java-worker/assets/images/java/io/unix-io/unix-io-1.png)
+![unix-io-1](https://caohonghua.github.io/knowledge/assets/images/java/io/unix-io/unix-io-1.png)
 
 或者网友提供的
 
-![unix-io-2](https://caohonghua.github.io/java-worker/assets/images/java/io/unix-io/unix-io-2.png)
+![unix-io-2](https://caohonghua.github.io/knowledge/assets/images/java/io/unix-io/unix-io-2.png)
 
 #### 非阻塞式 I/O
 
@@ -64,11 +64,11 @@ ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *
 
 由于 CPU 要处理更多的系统调用，因此这种模型是比较低效的
 
-![unix-io-3](https://caohonghua.github.io/java-worker/assets/images/java/io/unix-io/unix-io-3.png)
+![unix-io-3](https://caohonghua.github.io/knowledge/assets/images/java/io/unix-io/unix-io-3.png)
 
 或者网友提供的
 
-![unix-io-4](https://caohonghua.github.io/java-worker/assets/images/java/io/unix-io/unix-io-4.png)
+![unix-io-4](https://caohonghua.github.io/knowledge/assets/images/java/io/unix-io/unix-io-4.png)
 
 #### I/O 复用
 
@@ -78,11 +78,11 @@ ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *
 
 如果一个 Web 服务器没有 I/O 复用，那么每一个 Socket 连接都需要创建一个线程去处理。如果同时有几万个连接，那么就需要创建相同数量的线程。并且相比于多进程和多线程技术，I/O 复用不需要进程线程创建和切换的开销，系统开销更小。
 
-![unix-io-5](https://caohonghua.github.io/java-worker/assets/images/java/io/unix-io/unix-io-5.png)
+![unix-io-5](https://caohonghua.github.io/knowledge/assets/images/java/io/unix-io/unix-io-5.png)
 
 或者网友提供的
 
-![unix-io-6](https://caohonghua.github.io/java-worker/assets/images/java/io/unix-io/unix-io-6.png)
+![unix-io-6](https://caohonghua.github.io/knowledge/assets/images/java/io/unix-io/unix-io-6.png)
 
 #### 信号驱动 I/O
 
@@ -91,11 +91,11 @@ ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *
 
  相比于非阻塞式 I/O 的轮询方式，信号驱动 I/O 的 CPU 利用率更高。
 
- ![unix-io-7](https://caohonghua.github.io/java-worker/assets/images/java/io/unix-io/unix-io-7.png)
+ ![unix-io-7](https://caohonghua.github.io/knowledge/assets/images/java/io/unix-io/unix-io-7.png)
 
  或者网友提供的
 
-  ![unix-io-8](https://caohonghua.github.io/java-worker/assets/images/java/io/unix-io/unix-io-8.png)
+  ![unix-io-8](https://caohonghua.github.io/knowledge/assets/images/java/io/unix-io/unix-io-8.png)
 
   #### 异步 I/O
 
@@ -103,11 +103,11 @@ ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *
 
   异步 I/O 与信号驱动 I/O 的区别在于，异步 I/O 的信号是通知应用进程 I/O 完成，而信号驱动 I/O 的信号是通知应用进程可以开始 I/O
 
-  ![unix-io-9](https://caohonghua.github.io/java-worker/assets/images/java/io/unix-io/unix-io-9.png)
+  ![unix-io-9](https://caohonghua.github.io/knowledge/assets/images/java/io/unix-io/unix-io-9.png)
 
 或者网友提供的
 
-  ![unix-io-10](https://caohonghua.github.io/java-worker/assets/images/java/io/unix-io/unix-io-10.png)
+  ![unix-io-10](https://caohonghua.github.io/knowledge/assets/images/java/io/unix-io/unix-io-10.png)
 
 
 ### I/O 模型比较
@@ -126,7 +126,7 @@ ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *
 
 前四种 I/O 模型的主要区别在于第一个阶段，而第二个阶段是一样的: 将数据从内核复制到应用进程过程中，应用进程会被阻塞
 
-![unix-io-11](https://caohonghua.github.io/java-worker/assets/images/java/io/unix-io/unix-io-11.png)
+![unix-io-11](https://caohonghua.github.io/knowledge/assets/images/java/io/unix-io/unix-io-11.png)
 
 ### IO多路复用
 

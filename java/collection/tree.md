@@ -25,7 +25,7 @@ Java *TreeMap*实现了*SortedMap*接口，也就是说会按照`key`的大小�
 
 **TreeMap底层通过红黑树(Red-Black tree)实现**，也就意味着`containsKey()`, `get()`, `put()`, `remove()`都有着`log(n)`的时间复杂度。其具体算法实现参照了《算法导论》
 
-![red-black](https://caohonghua.github.io/java-worker/assets/images/java/collection/tree/red-black.png)
+![red-black](https://caohonghua.github.io/knowledge/assets/images/java/collection/tree/red-black.png)
 
 出于性能原因，*TreeMap*是非同步的(not synchronized)，如果需要在多线程环境使用，需要程序员手动同步；或者通过如下方式将*TreeMap*包装成(wrapped)同步的:
 
@@ -53,7 +53,7 @@ SortedMap m = Collections.synchronizedSortedMap(new TreeMap(...));
 
 左旋的过程是将`x`的右子树绕`x`逆时针旋转，使得`x`的右子树成为`x`的父亲，同时修改相关节点的引用。旋转之后，二叉查找树的属性仍然满足。
 
-![left-hand](https://caohonghua.github.io/java-worker/assets/images/java/collection/tree/left-hand.png)
+![left-hand](https://caohonghua.github.io/knowledge/assets/images/java/collection/tree/left-hand.png)
 
 *TreeMap*中左旋代码如下:
 
@@ -86,7 +86,7 @@ private void rotateLeft(Entry<K,V> p) {
 
 右旋的过程是将`x`的左子树绕`x`顺时针旋转，使得`x`的左子树成为`x`的父亲，同时修改相关节点的引用。旋转之后，二叉查找树的属性仍然满足。
 
-![rigth-hand](https://caohonghua.github.io/java-worker/assets/images/java/collection/tree/right-hand.png)
+![rigth-hand](https://caohonghua.github.io/knowledge/assets/images/java/collection/tree/right-hand.png)
 
 *TreeMap*中右旋代码如下:
 
@@ -122,7 +122,7 @@ private void rotateRight(Entry<K,V> p) {
 
 后继节点在红黑树的删除操作中将会用到。
 
-![successor](https://caohonghua.github.io/java-worker/assets/images/java/collection/tree/successor.png)
+![successor](https://caohonghua.github.io/knowledge/assets/images/java/collection/tree/successor.png)
 
 *TreeMap*中寻找节点后继的代码如下:
 
@@ -158,7 +158,7 @@ static <K,V> TreeMap.Entry<K,V> successor(Entry<K,V> t) {
 
 `get(Object key)`方法根据指定的`key`值返回对应的`value`，该方法调用了`getEntry(Object key)`得到相应的`entry`，然后返回`entry.value`。因此`getEntry()`是算法的核心。算法思想是根据`key`的自然顺序(或者比较器顺序)对二叉查找树进行查找，直到找到满足`k.compareTo(p.key) == 0`的`entry`。
 
-![get](https://caohonghua.github.io/java-worker/assets/images/java/collection/tree/get.png)
+![get](https://caohonghua.github.io/knowledge/assets/images/java/collection/tree/get.png)
 
 具体代码如下:
 
@@ -218,7 +218,7 @@ public V put(K key, V value) {
 
 上述代码的插入部分并不难理解: 首先在红黑树上找到合适的位置，然后创建新的`entry`并插入(当然，新插入的节点一定是树的叶子)。难点是调整函数`fixAfterInsertion()`，前面已经说过，调整往往需要1.改变某些节点的颜色，2.对某些节点进行旋转。
 
-![put](https://caohonghua.github.io/java-worker/assets/images/java/collection/tree/put.png)
+![put](https://caohonghua.github.io/knowledge/assets/images/java/collection/tree/put.png)
 
 调整函数`fixAfterInsertion()`的具体代码如下，其中用到了上文中提到的`rotateLeft()`和`rotateRight()`函数。通过代码我们能够看到，情况2其实是落在情况3内的。情况4～情况6跟前三种情况是对称的，因此图解中并没有画出后三种情况，读者可以参考代码自行理解。
 
@@ -328,7 +328,7 @@ private void deleteEntry(Entry<K,V> p) {
 
 跟上文中讲过的`fixAfterInsertion()`函数一样，这里也要分成若干种情况。记住，**无论有多少情况，具体的调整操作只有两种: 1.改变某些节点的颜色，2.对某些节点进行旋转。**
 
-![remove](https://caohonghua.github.io/java-worker/assets/images/java/collection/tree/remove.png)
+![remove](https://caohonghua.github.io/knowledge/assets/images/java/collection/tree/remove.png)
 
 上述图解的总体思想是: 将情况1首先转换成情况2，或者转换成情况3和情况4。当然，该图解并不意味着调整过程一定是从情况1开始。通过后续代码我们还会发现几个有趣的规则: a).如果是由情况1之后紧接着进入的情况2，那么情况2之后一定会退出循环(因为x为红色)；b).一旦进入情况3和情况4，一定会退出循环(因为x为root)。
 

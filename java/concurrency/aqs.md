@@ -108,7 +108,7 @@ tryReleaseShared(int)//共享方式。尝试释放资源，成功则返回true�
 
 AbstractQueuedSynchronizer类底层的数据结构是使用CLH(Craig,Landin,and Hagersten)队列是一个虚拟的双向队列(虚拟的双向队列即不存在队列实例，仅存在结点之间的关联关系)。AQS是将每条请求共享资源的线程封装成一个CLH锁队列的一个结点(Node)来实现锁的分配。其中Sync queue，即同步队列，是双向链表，包括head结点和tail结点，head结点主要用作后续的调度。而Condition queue不是必须的，其是一个单向链表，只有当使用Condition时，才会存在此单向链表。并且可能会有多个Condition queue
 
-![java-thread-x-juc-aqs-1](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-1.png)
+![java-thread-x-juc-aqs-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-1.png)
 
 ### AbstractQueuedSynchronizer源码分析
 
@@ -798,7 +798,7 @@ public final void acquire(int arg) {
 
 由上述源码可以知道，当一个线程调用acquire时，调用方法流程如下
 
-![java-thread-x-juc-aqs-2](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-2.png)
+![java-thread-x-juc-aqs-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-2.png)
 
 * 首先调用tryAcquire方法，调用此方法的线程会试图在独占模式下获取对象状态。此方法应该查询是否允许它在独占模式下获取对象状态，如果允许，则获取它。在AbstractQueuedSynchronizer源码中默认会抛出一个异常，即需要子类去重写此方法完成自己的逻辑。之后会进行分析。
 
@@ -1034,7 +1034,7 @@ private void unparkSuccessor(Node node) {
 
 对于cancelAcquire与unparkSuccessor方法，如下示意图可以清晰的表示:
 
-![java-thread-x-juc-aqs-3](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-3.png)
+![java-thread-x-juc-aqs-3](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-3.png)
 
 其中node为参数，在执行完cancelAcquire方法后的效果就是unpark了s结点所包含的t4线程
 
@@ -1111,35 +1111,35 @@ Thread[t2,5,main] running
 
 结果分析: 从示例可知，线程t1与t2共用了一把锁，即同一个lock。可能会存在如下一种时序。
 
-![java-thread-x-juc-aqs-4](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-4.png)
+![java-thread-x-juc-aqs-4](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-4.png)
 
 说明: 首先线程t1先执行lock.lock操作，然后t2执行lock.lock操作，然后t1执行lock.unlock操作，最后t2执行lock.unlock操作。基于这样的时序，分析AbstractQueuedSynchronizer内部的工作机制
 
 * t1线程调用lock.lock方法，其方法调用顺序如下，只给出了主要的方法调用
 
-![java-thread-x-juc-aqs-5](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-5.png)
+![java-thread-x-juc-aqs-5](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-5.png)
 
 说明: 其中，前面的部分表示哪个类，后面是具体的类中的哪个方法，AQS表示AbstractQueuedSynchronizer类，AOS表示AbstractOwnableSynchronizer类
 
 * t2线程调用lock.lock方法，其方法调用顺序如下，只给出了主要的方法调用。
 
-![java-thread-x-juc-aqs-6](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-6.png)
+![java-thread-x-juc-aqs-6](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-6.png)
 
 说明: 经过一系列的方法调用，最后达到的状态是禁用t2线程，因为调用了LockSupport.park
 
 * t1线程调用lock.unlock，其方法调用顺序如下，只给出了主要的方法调用。
 
-![java-thread-x-juc-aqs-7](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-7.png)
+![java-thread-x-juc-aqs-7](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-7.png)
 
 说明: t1线程中调用lock.unlock后，经过一系列的调用，最终的状态是释放了许可，因为调用了LockSupport.unpark。这时，t2线程就可以继续运行了。此时，会继续恢复t2线程运行环境，继续执行LockSupport.park后面的语句，即进一步调用如下。
 
-![java-thread-x-juc-aqs-8](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-8.png)
+![java-thread-x-juc-aqs-8](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-8.png)
 
 说明: 在上一步调用了LockSupport.unpark后，t2线程恢复运行，则运行parkAndCheckInterrupt，之后，继续运行acquireQueued方法，最后达到的状态是头结点head与尾结点tail均指向了t2线程所在的结点，并且之前的头结点已经从sync队列中断开了
 
 * t2线程调用lock.unlock，其方法调用顺序如下，只给出了主要的方法调用。
 
-![java-thread-x-juc-aqs-9](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-9.png)
+![java-thread-x-juc-aqs-9](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-9.png)
 
 说明: t2线程执行lock.unlock后，最终达到的状态还是与之前的状态一样
 
@@ -1278,85 +1278,85 @@ consume = 200, size = 0
 
 说明: 根据结果，我们猜测一种可能的时序如下
 
-![java-thread-x-juc-aqs-10](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-10.png)
+![java-thread-x-juc-aqs-10](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-10.png)
 
 说明: p1代表produce 500的那个线程，p2代表produce 200的那个线程，c1代表consume 500的那个线程，c2代表consume 200的那个线程。
 
 * p1线程调用lock.lock，获得锁，继续运行，方法调用顺序在前面已经给出。
 * p2线程调用lock.lock，由前面的分析可得到如下的最终状态。
 
-![java-thread-x-juc-aqs-11](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-11.png)
+![java-thread-x-juc-aqs-11](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-11.png)
 
 说明: p2线程调用lock.lock后，会禁止p2线程的继续运行，因为执行了LockSupport.park操作。
 
 * c1线程调用lock.lock，由前面的分析得到如下的最终状态。
 
-![java-thread-x-juc-aqs-12](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-12.png)
+![java-thread-x-juc-aqs-12](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-12.png)
 
 说明: 最终c1线程会在sync queue队列的尾部，并且其结点的前驱结点(包含p2的结点)的waitStatus变为了SIGNAL。
 
 * c2线程调用lock.lock，由前面的分析得到如下的最终状态。
 
-![java-thread-x-juc-aqs-13](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-13.png)
+![java-thread-x-juc-aqs-13](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-13.png)
 
 说明: 最终c1线程会在sync queue队列的尾部，并且其结点的前驱结点(包含c1的结点)的waitStatus变为了SIGNAL。
 
 * p1线程执行emptyCondition.signal，其方法调用顺序如下，只给出了主要的方法调用。
 
-![java-thread-x-juc-aqs-14](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-14.png)
+![java-thread-x-juc-aqs-14](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-14.png)
 
 说明: AQS.CO表示AbstractQueuedSynchronizer.ConditionObject类。此时调用signal方法不会产生任何其他效果。
 
 * p1线程执行lock.unlock，根据前面的分析可知，最终的状态如下。
 
-![java-thread-x-juc-aqs-15](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-15.png)
+![java-thread-x-juc-aqs-15](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-15.png)
 
 
 说明: 此时，p2线程所在的结点为头结点，并且其他两个线程(c1、c2)依旧被禁止，所以，此时p2线程继续运行，执行用户逻辑
 
 * p2线程执行fullCondition.await，其方法调用顺序如下，只给出了主要的方法调用。
 
-![java-thread-x-juc-aqs-17-1](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-17-1.png)
+![java-thread-x-juc-aqs-17-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-17-1.png)
 
 说明: 最终到达的状态是新生成了一个结点，包含了p2线程，此结点在condition queue中；并且sync queue中p2线程被禁止了，因为在执行了LockSupport.park操作。从方法一些调用可知，在await操作中线程会释放锁资源，供其他线程获取。同时，head结点后继结点的包含的线程的许可被释放了，故其可以继续运行。由于此时，只有c1线程可以运行，故运行c1
 
 * 继续运行c1线程，c1线程由于之前被park了，所以此时恢复，继续之前的步骤，即还是执行前面提到的acquireQueued方法，之后，c1判断自己的前驱结点为head，并且可以获取锁资源，最终到达的状态如下
 
-![java-thread-x-juc-aqs-16](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-16.png)
+![java-thread-x-juc-aqs-16](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-16.png)
 
 说明: 其中，head设置为包含c1线程的结点，c1继续运行
 
 * c1线程执行fullCondtion.signal，其方法调用顺序如下，只给出了主要的方法调用。
 
-![java-thread-x-juc-aqs-17](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-17.png)
+![java-thread-x-juc-aqs-17](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-17.png)
 
 说明: signal方法达到的最终结果是将包含p2线程的结点从condition queue中转移到sync queue中，之后condition queue为null，之前的尾结点的状态变为SIGNAL。
 
 * c1线程执行lock.unlock操作，根据之前的分析，经历的状态变化如下。
 
-![java-thread-x-juc-aqs-18](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-18.png)
+![java-thread-x-juc-aqs-18](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-18.png)
 
 说明: 最终c2线程会获取锁资源，继续运行用户逻辑。
 
 * c2线程执行emptyCondition.await，由前面的第七步分析，可知最终的状态如下。
 
-![java-thread-x-juc-aqs-19](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-19.png)
+![java-thread-x-juc-aqs-19](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-19.png)
 
 说明: await操作将会生成一个结点放入condition queue中与之前的一个condition queue是不相同的，并且unpark头结点后面的结点，即包含线程p2的结点。
 
 * p2线程被unpark，故可以继续运行，经过CPU调度后，p2继续运行，之后p2线程在AQS:await方法中被park，继续AQS.CO:await方法的运行，其方法调用顺序如下，只给出了主要的方法调用。
 
-![java-thread-x-juc-aqs-20](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-20.png)
+![java-thread-x-juc-aqs-20](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-20.png)
 
 * p2继续运行，执行emptyCondition.signal，根据第九步分析可知，最终到达的状态如下。
 
-![java-thread-x-juc-aqs-21](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-21.png)
+![java-thread-x-juc-aqs-21](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-21.png)
 
 说明: 最终，将condition queue中的结点转移到sync queue中，并添加至尾部，condition queue会为空，并且将head的状态设置为SIGNAL。
 
 * p2线程执行lock.unlock操作，根据前面的分析可知，最后的到达的状态如下
 
-![java-thread-x-juc-aqs-22](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-22.png)
+![java-thread-x-juc-aqs-22](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/aqs/java-thread-x-juc-aqs-22.png)
 
 说明: unlock操作会释放c2线程的许可，并且将头结点设置为c2线程所在的结点。
 

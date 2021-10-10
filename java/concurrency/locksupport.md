@@ -254,7 +254,7 @@ after wait
 
 说明: 具体的流程图如下
 
-![java-thread-x-locksupport-1](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/locksupport/java-thread-x-locksupport-1.png)
+![java-thread-x-locksupport-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/locksupport/java-thread-x-locksupport-1.png)
 
 使用wait/notify实现同步时，必须先调用wait，后调用notify，如果先调用notify，再调用wait，将起不了作用。具体代码如下
 

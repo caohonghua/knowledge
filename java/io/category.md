@@ -33,11 +33,11 @@ permalink: /java/io/category/
 
 #### 字节流
 
-![java-io-category-1](https://caohonghua.github.io/java-worker/assets/images/java/io/category/java-io-category-1.png)
+![java-io-category-1](https://caohonghua.github.io/knowledge/assets/images/java/io/category/java-io-category-1.png)
 
 #### 字符流
 
-![java-io-category-2](https://caohonghua.github.io/java-worker/assets/images/java/io/category/java-io-category-2.png)
+![java-io-category-2](https://caohonghua.github.io/knowledge/assets/images/java/io/category/java-io-category-2.png)
 
 #### 字节流和字符流的区别
 
@@ -64,14 +64,14 @@ UTF-16be 中的 be 指的是 Big Endian，也就是大端。相应地也有 UTF-
 Java 使用双字节编码 UTF-16be，这不是指 Java 只支持这一种编码方式，而是说 char 这种类型使用 UTF-16be 进行编码。char 类型占 16 位，也就是两个字节，Java 使用这种双字节编码是为了让一个中文或者一个英文都能使用一个 char 来存储
 
 
-![java-io-1](https://caohonghua.github.io/java-worker/assets/images/java/io/category/java-io-1.png)
+![java-io-1](https://caohonghua.github.io/knowledge/assets/images/java/io/category/java-io-1.png)
 
 
 ### IO理解分类 - 从数据操作上
 
 从数据来源或者说是操作对象角度看，IO 类可以分为:
 
-![java-io-category-3](https://caohonghua.github.io/java-worker/assets/images/java/io/category/java-io-category-3.png)
+![java-io-category-3](https://caohonghua.github.io/knowledge/assets/images/java/io/category/java-io-category-3.png)
 
 #### 文件(file)
 

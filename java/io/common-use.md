@@ -191,7 +191,7 @@ public static void main(String[] args) throws IOException {
 * Socket: 客户端类
 * 服务器和客户端通过 InputStream 和 OutputStream 进行输入输出。
 
-![common-use-1](https://caohonghua.github.io/java-worker/assets/images/java/io/common-use/common-use-1.jpg)
+![common-use-1](https://caohonghua.github.io/knowledge/assets/images/java/io/common-use/common-use-1.jpg)
 
 ##### Datagram
 

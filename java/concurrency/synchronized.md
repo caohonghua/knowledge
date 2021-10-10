@@ -388,7 +388,7 @@ public class SynchronizedDemo2 {
 
 得到信息如下：
 
-![monitor](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/synchronized/monitor.png)
+![monitor](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/synchronized/monitor.png)
 
 关注红色方框里的`monitorenter`和`monitorexit`即可。
 
@@ -402,7 +402,7 @@ public class SynchronizedDemo2 {
 
 下图表现了对象，对象监视器，同步队列以及执行线程状态之间的关系
 
-![monitor-relation](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/synchronized/monitor-relation.png)
+![monitor-relation](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/synchronized/monitor-relation.png)
 
 该图可以看出，任意线程对Object的访问，首先要获得Object的监视器，如果获取失败，该线程就进入同步状态，线程状态变为BLOCKED，当Object的监视器占有者释放后，在同步队列中得线程就会有机会重新获取该监视器
 
@@ -437,7 +437,7 @@ public class MonitorDemo {
 
 该代码的happens-before关系如图所示：
 
-![happens-before](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/synchronized/happens-before.png)
+![happens-before](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/synchronized/happens-before.png)
 
 在图中每一个箭头连接的两个节点就代表之间的happens-before关系，黑色的是通过程序顺序规则推导出来，红色的为监视器锁规则推导而出：线程A释放锁happens-before线程B加锁，蓝色的则是通过程序顺序规则和监视器锁规则推测出来happens-before关系，通过传递性规则进一步推导的happens-before关系。现在我们来重点关注2 happens-before 5，通过这个关系我们可以得出什么?
 
@@ -496,7 +496,7 @@ public static String test03(String s1, String s2, String s3) {
 
 上述代码使用javap 编译结果
 
-![javap](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/synchronized/javap.png)
+![javap](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/synchronized/javap.png)
 
 众所周知，StringBuilder不是安全同步的，但是在上述代码中，JVM判断该段代码并不会逃逸，则将该代码带默认为线程独有的资源，并不需要同步，所以执行了锁消除操作。(还有Vector中的各种操作也可实现锁消除。在没有逃逸出数据安全防卫内)
 

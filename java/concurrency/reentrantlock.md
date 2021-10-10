@@ -40,7 +40,7 @@ public class ReentrantLock implements Lock, java.io.Serializable
 
 ReentrantLock总共有三个内部类，并且三个内部类是紧密相关的，下面先看三个类的关系
 
-![java-thread-x-juc-reentrantlock-1](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-1.png)
+![java-thread-x-juc-reentrantlock-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-1.png)
 
 说明: ReentrantLock类内部总共存在Sync、NonfairSync、FairSync三个类，NonfairSync与FairSync类继承自Sync类，Sync类继承自AbstractQueuedSynchronizer抽象类。下面逐个进行分析.
 
@@ -139,7 +139,7 @@ abstract static class Sync extends AbstractQueuedSynchronizer {
 ```
 Sync类存在如下方法和作用如下
 
-![java-thread-x-juc-reentrantlock-2](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-2.png)
+![java-thread-x-juc-reentrantlock-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-2.png)
 
 * NonfairSync类
 
@@ -218,7 +218,7 @@ static final class FairSync extends Sync {
 
 说明: 跟踪lock方法的源码可知，当资源空闲时，它总是会先判断sync队列(AbstractQueuedSynchronizer中的数据结构)是否有等待时间更长的线程，如果存在，则将该线程加入到等待队列的尾部，实现了公平获取原则。其中，FairSync类的lock的方法调用如下，只给出了主要的方法。
 
-![java-thread-x-juc-reentrantlock-3](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-3.png)
+![java-thread-x-juc-reentrantlock-3](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-3.png)
 
 
 说明: 可以看出只要资源被其他线程占用，该线程就会添加到sync queue中的尾部，而不会先尝试获取资源。这也是和Nonfair最大的区别，Nonfair每一次都会尝试去获取资源，如果此时该资源恰好被释放，则会被当前线程获取，这就造成了不公平的现象，当获取不成功，再加入队列尾部
@@ -319,56 +319,56 @@ Thread[t3,5,main] running
 
 说明: 该示例使用的是公平策略，由结果可知，可能会存在如下一种时序。
 
-![java-thread-x-juc-reentrantlock-4](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-4.png)
+![java-thread-x-juc-reentrantlock-4](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-4.png)
 
 
 说明: 首先，t1线程的lock操作 -> t2线程的lock操作 -> t3线程的lock操作 -> t1线程的unlock操作 -> t2线程的unlock操作 -> t3线程的unlock操作。根据这个时序图来进一步分析源码的工作流程
 
 * t1线程执行lock.lock，下图给出了方法调用中的主要方法。
 
-![java-thread-x-juc-reentrantlock-5](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-5.png)
+![java-thread-x-juc-reentrantlock-5](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-5.png)
 
 说明: 由调用流程可知，t1线程成功获取了资源，可以继续执行。
 
 * t2线程执行lock.lock，下图给出了方法调用中的主要方法
 
-![java-thread-x-juc-reentrantlock-6](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-6.png)
+![java-thread-x-juc-reentrantlock-6](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-6.png)
 
 说明: 由上图可知，最后的结果是t2线程会被禁止，因为调用了LockSupport.park。
 
 * t3线程执行lock.lock，下图给出了方法调用中的主要方法
 
-![java-thread-x-juc-reentrantlock-7](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-7.png)
+![java-thread-x-juc-reentrantlock-7](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-7.png)
 
 说明: 由上图可知，最后的结果是t3线程会被禁止，因为调用了LockSupport.park。
 
 * t1线程调用了lock.unlock，下图给出了方法调用中的主要方法。
 
-![java-thread-x-juc-reentrantlock-8](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-8.png)
+![java-thread-x-juc-reentrantlock-8](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-8.png)
 
 说明: 如上图所示，最后，head的状态会变为0，t2线程会被unpark，即t2线程可以继续运行。此时t3线程还是被禁止。
 
 * t2获得cpu资源，继续运行，由于t2之前被park了，现在需要恢复之前的状态，下图给出了方法调用中的主要方法
 
-![java-thread-x-juc-reentrantlock-9](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-9.png)
+![java-thread-x-juc-reentrantlock-9](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-9.png)
 
 说明: 在setHead函数中会将head设置为之前head的下一个结点，并且将pre域与thread域都设置为null，在acquireQueued返回之前，sync queue就只有两个结点了
 
 * t2执行lock.unlock，下图给出了方法调用中的主要方法。
 
-![java-thread-x-juc-reentrantlock-10](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-10.png)
+![java-thread-x-juc-reentrantlock-10](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-10.png)
 
 由上图可知，最终unpark t3线程，让t3线程可以继续运行
 
 * t3线程获取cpu资源，恢复之前的状态，继续运行。
 
-![java-thread-x-juc-reentrantlock-11](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-11.png)
+![java-thread-x-juc-reentrantlock-11](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-11.png)
 
 说明: 最终达到的状态是sync queue中只剩下了一个结点，并且该节点除了状态为0外，其余均为null。
 
 * t3执行lock.unlock，下图给出了方法调用中的主要方法。
 
-![java-thread-x-juc-reentrantlock-12](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-12.png)
+![java-thread-x-juc-reentrantlock-12](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantlock/java-thread-x-juc-reentrantlock-12.png)
 
 说明: 最后的状态和之前的状态是一样的，队列中有一个空节点，头结点为尾节点均指向它。
 

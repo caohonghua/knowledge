@@ -195,10 +195,10 @@ public class GenericsDemo{
 
 泛型方法，是在调用方法的时候指明泛型的具体类型。
 
-![泛型方法](https://caohonghua.github.io/java-worker/assets/images/java/basic/generic/generic-method.png)
+![泛型方法](https://caohonghua.github.io/knowledge/assets/images/java/basic/generic/generic-method.png)
 调用泛型方法语法格式
 
-![泛型方法调用](https://caohonghua.github.io/java-worker/assets/images/java/basic/generic/invoke-generic-method.png)
+![泛型方法调用](https://caohonghua.github.io/knowledge/assets/images/java/basic/generic/invoke-generic-method.png)
 
 说明一下，定义泛型方法时，必须在返回值前边加一个`<T>`，来声明这是一个泛型方法，持有一个泛型`T`，然后才可以用泛型T作为方法的返回值。
 
@@ -445,19 +445,19 @@ Java泛型这个特性是从JDK 1.5才开始加入的，因此为了兼容之前
 
 当类定义中的类型参数没有任何限制时，在类型擦除中直接被替换为Object，即形如`<T>`和`<?>`的类型参数都被替换为Object。
 
-![类型擦除1](https://caohonghua.github.io/java-worker/assets/images/java/basic/generic/type-erasure1.png)
+![类型擦除1](https://caohonghua.github.io/knowledge/assets/images/java/basic/generic/type-erasure1.png)
 
 - 擦除类定义中的类型参数 - 有限制类型擦除
 
 当类定义中的类型参数存在限制（上下界）时，在类型擦除中替换为类型参数的上界或者下界，比如形如`<T extends Number>`和`<? extends Number>`的类型参数被替换为`Number`，`<? super Number>`被替换为Object。
 
-![类型擦除2](https://caohonghua.github.io/java-worker/assets/images/java/basic/generic/type-erasure2.png)
+![类型擦除2](https://caohonghua.github.io/knowledge/assets/images/java/basic/generic/type-erasure2.png)
 
 - 擦除方法定义中的类型参数
 
 擦除方法定义中的类型参数原则和擦除类定义中的类型参数是一样的，这里仅以擦除方法定义中的有限制类型参数为例。
 
-![类型擦除3](https://caohonghua.github.io/java-worker/assets/images/java/basic/generic/type-erasure3.png)
+![类型擦除3](https://caohonghua.github.io/knowledge/assets/images/java/basic/generic/type-erasure3.png)
 
 
 

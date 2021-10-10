@@ -21,7 +21,7 @@ permalink: /java/collection/linkedhash/
 
 *LinkedHashMap*实现了*Map*接口，即允许放入`key`为`null`的元素，也允许插入`value`为`null`的元素。从名字上可以看出该容器是*linked list*和*HashMap*的混合体，也就是说它同时满足*HashMap*和*linked list*的某些特性。**可将LinkedHashMap看作采用linked list增强的HashMap。**
 
-![linked-hash](https://caohonghua.github.io/java-worker/assets/images/java/collection/linkedhash/linked-hash.png)
+![linked-hash](https://caohonghua.github.io/knowledge/assets/images/java/collection/linkedhash/linked-hash.png)
 
 事实上*LinkedHashMap*是*HashMap*的直接子类，**二者唯一的区别是LinkedHashMap在HashMap的基础上，采用双向链表(doubly-linked list)的形式将所有`entry`连接起来，这样是为保证元素的迭代顺序跟插入顺序相同**。上图给出了*LinkedHashMap*的结构图，主体部分跟*HashMap*完全一样，多了`header`指向双向链表的头部(是一个哑元)，**该双向链表的迭代顺序就是`entry`的插入顺序**。
 
@@ -54,7 +54,7 @@ Map m = Collections.synchronizedMap(new LinkedHashMap(...));
 
 #### get()
 
-`get(Object key)`方法根据指定的`key`值返回对应的`value`。该方法跟`HashMap.get()`方法的流程几乎完全一样，读者可自行[参考前文 (opens new window)](https://caohonghua.github.io/java-worker/java/collection/hash/#get)，这里不再赘述。
+`get(Object key)`方法根据指定的`key`值返回对应的`value`。该方法跟`HashMap.get()`方法的流程几乎完全一样，读者可自行[参考前文 (opens new window)](https://caohonghua.github.io/knowledge/java/collection/hash/#get)，这里不再赘述。
 
 
 
@@ -68,7 +68,7 @@ Map m = Collections.synchronizedMap(new LinkedHashMap(...));
 > 1. 从`table`的角度看，新的`entry`需要插入到对应的`bucket`里，当有哈希冲突时，采用头插法将新的`entry`插入到冲突链表的头部。
 > 2. 从`header`的角度看，新的`entry`需要插入到双向链表的尾部。
 
-![put](https://caohonghua.github.io/java-worker/assets/images/java/collection/linkedhash/put.png)
+![put](https://caohonghua.github.io/knowledge/assets/images/java/collection/linkedhash/put.png)
 
 `addEntry()`代码如下:
 
@@ -119,7 +119,7 @@ private void addBefore(Entry<K,V> existingEntry) {
 >
 > 2. 从`header`的角度来看，需要将该`entry`从双向链表中删除，同时修改链表中前面以及后面元素的相应引用。
 
-![remove](https://caohonghua.github.io/java-worker/assets/images/java/collection/linkedhash/remove.png)
+![remove](https://caohonghua.github.io/knowledge/assets/images/java/collection/linkedhash/remove.png)
 
 `removeEntryForKey()`对应的代码如下:
 

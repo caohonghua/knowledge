@@ -27,7 +27,7 @@ permalink: /java/concurrency/phaser/
 
 ### Phaser运行机制
 
-![java-thread-x-juc-phaser-1](https://caohonghua.github.io/java-worker/assets/images/java/concurrency/phaser/java-thread-x-juc-phaser-1.png)
+![java-thread-x-juc-phaser-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/phaser/java-thread-x-juc-phaser-1.png)
 
 * Registration(注册)
 

@@ -115,23 +115,23 @@ public class Music {
 
 1. 泛化关系（Generalization）
 用来描述继承关系，在Java中使用extends关键字。
-![generalization](https://caohonghua.github.io/java-worker/assets/images/java/basic/object-oriented/generalization.png)
+![generalization](https://caohonghua.github.io/knowledge/assets/images/java/basic/object-oriented/generalization.png)
 
 2. 实现关系(Realization)
 用来实现一个借口，在Java中使用implement关键字。
-![realization](https://caohonghua.github.io/java-worker/assets/images/java/basic/object-oriented/realization.png)
+![realization](https://caohonghua.github.io/knowledge/assets/images/java/basic/object-oriented/realization.png)
 
 3. 聚合关系(Aggregation)
 表示整体由部分组成，但是整体和部分不是强依赖的，整体不存在了部分还是会存在。
-![aggregation](https://caohonghua.github.io/java-worker/assets/images/java/basic/object-oriented/aggregation.png)
+![aggregation](https://caohonghua.github.io/knowledge/assets/images/java/basic/object-oriented/aggregation.png)
 
 4. 组合关系(Composition)
 和聚合不同，组合中整体和部分是强依赖的，整体不存在了部分也不存在了。比如公司和部门，公司没了部分就不存在了。但是公司和员工就属于聚合关系，因为公司没了员工还在。
-![composition](https://caohonghua.github.io/java-worker/assets/images/java/basic/object-oriented/composition.png)
+![composition](https://caohonghua.github.io/knowledge/assets/images/java/basic/object-oriented/composition.png)
 
 5. 关联关系(Association)
 表示不同对象之间有关联，这是一种静态关系，与运行过程的状态无关，在最开始就可以确定。因此也可以用1对1、多对1、多对多这种关联关系来表示。比如学生和学校就是一种关联关系，一个学校可以有很多学生，但是一个学生只属于一个学校，因此这是一种多对一的关系，在运行开始之前就可以确定。
-![association](https://caohonghua.github.io/java-worker/assets/images/java/basic/object-oriented/association.png)
+![association](https://caohonghua.github.io/knowledge/assets/images/java/basic/object-oriented/association.png)
 
 6. 依赖关系(Dependency)
 和关系关系不同，依赖关系是在运行过程中起作用的。A类和B类是依赖关系主要有三种形式：
@@ -139,4 +139,4 @@ public class Music {
 * A类是B类中的（某方法的）局部变量；
 * A类是B类方法当中的一个参数；
 * A类向B类发送消息，从而影响B类发生变化；
-![dependency](https://caohonghua.github.io/java-worker/assets/images/java/basic/object-oriented/dependency.png)
+![dependency](https://caohonghua.github.io/knowledge/assets/images/java/basic/object-oriented/dependency.png)
