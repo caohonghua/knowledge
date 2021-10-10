@@ -92,5 +92,3 @@ permalink: /java/
 * <a href="https://docs.oracle.com/javase/8/docs/api/" target="_blank">Java8</a>
 * <a href="https://www.seancassidy.me/better-java.html" target="_blank">Better-Java</a>
 * <a href="https://github.com/akullpp/awesome-java" target="_blank">Awesome-Java</a>
-
-### <a href="https://www.pdai.tech/md/java/thread/java-thread-x-threadlocal.html" target="_blank">参考</a>
