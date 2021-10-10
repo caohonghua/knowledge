@@ -82,7 +82,7 @@
 * [调试排错：9种常见的CMS-GC问题分析与解决](/java-worker/java/jvm/cms-gc/)
 * [调试排错：Java动态调试技术原理](/java-worker/java/jvm/dynamic-debug/)
 * [调试排错：Java应用在线调试Arthas](/java-worker/java/jvm/arthas/)
-* [调试排错：使用IDEA本地调试和远程调试](/java-worker/java/jvm/idea-debug/)
+* [调试排错：使用IDEA本地调试和远程调试](https://www.pdai.tech/md/java/jvm/java-jvm-debug-idea.html)
 
 ### API
 * <a href="https://docs.oracle.com/javase/8/docs/api/" target="_blank">Java8</a>
