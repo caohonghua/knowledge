@@ -180,4 +180,4 @@ methodOne()声明一个局部基本类型变量(类型为int的localVariable1)�
 
 ![java-memory-model-7](https://caohonghua.github.io/java-worker/assets/images/java/jvm/memory-model/java-memory-model-7.png)
 
-要解决此问题，您可以使用Java synchronized块。 同步块保证在任何给定时间只有一个线程可以进入代码的给定关键部分。 同步块还保证在同步块内访问的所有变量都将从主存储器中读入，当线程退出同步块时，所有更新的变量将再次刷新回主存储器，无论变量是不是声明为volatile ¶
+要解决此问题，您可以使用Java synchronized块。 同步块保证在任何给定时间只有一个线程可以进入代码的给定关键部分。 同步块还保证在同步块内访问的所有变量都将从主存储器中读入，当线程退出同步块时，所有更新的变量将再次刷新回主存储器，无论变量是不是声明为volatile 
