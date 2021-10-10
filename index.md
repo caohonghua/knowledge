@@ -74,7 +74,7 @@
 * [JVM基础：Java内存模型详解](/java-worker/java/jvm/detailed-memory-model/)
 * [JVM基础：Java垃圾回收基础](/java-worker/java/jvm/gc-basics/)
 * [JVM基础：Java垃圾回收器G1详解](/java-worker/java/jvm/g1/)
-* [调试排错：JVM调优参数](/java-worker/java/jvm/tuning-parameters/)
+* [调试排错：JVM调优参数](/java-worker/java/jvm/optimize/)
 * [调试排错：Java-OOM分析](/java-worker/java/jvm/oom/)
 * [调试排错：Java线程Dump分析](/java-worker/java/jvm/dump/)
 * [调试排错：Java问题排查：Linux命令](/java-worker/java/jvm/linux/)
