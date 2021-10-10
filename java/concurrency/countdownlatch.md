@@ -265,7 +265,7 @@ private void doReleaseShared() {
 所以，对CountDownLatch的await调用大致会有如下的调用链
 
 
-![java-thread-x-countdownlatch-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-1.png)
+![java-thread-x-countdownlatch-1](/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-1.png)
 
 说明: 上图给出了可能会调用到的主要方法，并非一定会调用到，之后，会通过一个示例给出详细的分析。
 
@@ -359,7 +359,7 @@ private void doReleaseShared() {
 
 所以，对CountDownLatch的countDown调用大致会有如下的调用链
 
-![java-thread-x-countdownlatch-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-2.png)
+![java-thread-x-countdownlatch-2](/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-2.png)
 
 说明: 上图给出了可能会调用到的主要方法，并非一定会调用到，之后，会通过一个示例给出详细的分析。
 
@@ -421,33 +421,33 @@ main continue
 
 说明: 本程序首先计数器初始化为2。根据结果，可能会存在如下的一种时序图。
 
-![java-thread-x-countdownlatch-3](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-3.png)
+![java-thread-x-countdownlatch-3](/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-3.png)
 
 说明: 首先main线程会调用await操作，此时main线程会被阻塞，等待被唤醒，之后t1线程执行了countDown操作，最后，t2线程执行了countDown操作，此时main线程就被唤醒了，可以继续运行。下面，进行详细分析。
 
 
 * main线程执行countDownLatch.await操作，主要调用的函数如下。
 
-![java-thread-x-countdownlatch-4](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-4.png)
+![java-thread-x-countdownlatch-4](/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-4.png)
 
 说明: 在最后，main线程就被park了，即禁止运行了。此时Sync queue(同步队列)中有两个节点，AQS的state为2，包含main线程的结点的nextWaiter指向SHARED结点
 
 * t1线程执行countDownLatch.countDown操作，主要调用的函数如下
 
-![java-thread-x-countdownlatch-5](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-5.png)
+![java-thread-x-countdownlatch-5](/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-5.png)
 
 说明: 此时，Sync queue队列里的结点个数未发生变化，但是此时，AQS的state已经变为1了。
 
 * t2线程执行countDownLatch.countDown操作，主要调用的函数如下。
 
-![java-thread-x-countdownlatch-6](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-6.png)
+![java-thread-x-countdownlatch-6](/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-6.png)
 
 说明: 经过调用后，AQS的state为0，并且此时，main线程会被unpark，可以继续运行。当main线程获取cpu资源后，继续运行。
 
 * main线程获取cpu资源，继续运行，由于main线程是在parkAndCheckInterrupt函数中被禁止的，所以此时，继续在parkAndCheckInterrupt函数运行。
 
 
-![java-thread-x-countdownlatch-7](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-7.png)
+![java-thread-x-countdownlatch-7](/knowledge/assets/images/java/concurrency/countdownlatch/java-thread-x-countdownlatch-7.png)
 
 说明: main线程恢复，继续在parkAndCheckInterrupt函数中运行，之后又会回到最终达到的状态为AQS的state为0，并且head与tail指向同一个结点，该节点的额nextWaiter域还是指向SHARED结点
 

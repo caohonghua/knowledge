@@ -52,7 +52,7 @@ public class ReentrantReadWriteLock implements ReadWriteLock, java.io.Serializab
 
 ReentrantReadWriteLock有五个内部类，五个内部类之间也是相互关联的。内部类的关系如下图所示
 
-![java-thread-x-readwritelock-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-1.png)
+![java-thread-x-readwritelock-1](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-1.png)
 
 说明: 如上图所示，Sync继承自AQS、NonfairSync继承自Sync类、FairSync继承自Sync类；ReadLock实现了Lock接口、WriteLock也实现了Lock接口
 
@@ -187,7 +187,7 @@ protected final boolean tryRelease(int releases) {
 
 说明: 此函数用于释放写锁资源，首先会判断该线程是否为独占线程，若不为独占线程，则抛出异常，否则，计算释放资源后的写锁的数量，若为0，表示成功释放，资源不将被占用，否则，表示资源还被占用。其函数流程图如下
 
-![java-thread-x-readwritelock-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-2.png)
+![java-thread-x-readwritelock-2](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-2.png)
 
 * tryAcquire函数
 
@@ -232,7 +232,7 @@ protected final boolean tryAcquire(int acquires) {
 
 说明: 此函数用于获取写锁，首先会获取state，判断是否为0，若为0，表示此时没有读锁线程，再判断写线程是否应该被阻塞，而在非公平策略下总是不会被阻塞，在公平策略下会进行判断(判断同步队列中是否有等待时间更长的线程，若存在，则需要被阻塞，否则，无需阻塞)，之后再设置状态state，然后返回true。若state不为0，则表示此时存在读锁或写锁线程，若写锁线程数量为0或者当前线程为独占锁线程，则返回false，表示不成功，否则，判断写锁线程的重入次数是否大于了最大值，若是，则抛出异常，否则，设置状态state，返回true，表示成功。其函数流程图如下
 
-![java-thread-x-readwritelock-3](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-3.png)
+![java-thread-x-readwritelock-3](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-3.png)
 
 * tryReleaseShared函数
 
@@ -279,7 +279,7 @@ protected final boolean tryReleaseShared(int unused) {
 
 说明: 此函数表示读锁线程释放锁。首先判断当前线程是否为第一个读线程firstReader，若是，则判断第一个读线程占有的资源数firstReaderHoldCount是否为1，若是，则设置第一个读线程firstReader为空，否则，将第一个读线程占有的资源数firstReaderHoldCount减1；若当前线程不是第一个读线程，那么首先会获取缓存计数器(上一个读锁线程对应的计数器 )，若计数器为空或者tid不等于当前线程的tid值，则获取当前线程的计数器，如果计数器的计数count小于等于1，则移除当前线程对应的计数器，如果计数器的计数count小于等于0，则抛出异常，之后再减少计数即可。无论何种情况，都会进入无限循环，该循环可以确保成功设置状态state。其流程图如下
 
-![java-thread-x-readwritelock-4](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-4.png)
+![java-thread-x-readwritelock-4](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-4.png)
 
 * tryAcquireShared函数
 
@@ -345,7 +345,7 @@ protected final int tryAcquireShared(int unused) {
 
 说明: 此函数表示读锁线程获取读锁。首先判断写锁是否为0并且当前线程不占有独占锁，直接返回；否则，判断读线程是否需要被阻塞并且读锁数量是否小于最大值并且比较设置状态成功，若当前没有读锁，则设置第一个读线程firstReader和firstReaderHoldCount；若当前线程线程为第一个读线程，则增加firstReaderHoldCount；否则，将设置当前线程对应的HoldCounter对象的值。流程图如下
 
-![java-thread-x-readwritelock-5](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-5.png)
+![java-thread-x-readwritelock-5](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-5.png)
 
 * fullTryAcquireShared函数
 
@@ -556,47 +556,47 @@ wt1 unlock successfully
 
 说明: 程序中生成了一个ReentrantReadWriteLock对象，并且设置了两个读线程，一个写线程。根据结果，可能存在如下的时序图
 
-![java-thread-x-readwritelock-6](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-6.png)
+![java-thread-x-readwritelock-6](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-6.png)
 
 * rt1线程执行rrwLock.readLock().lock操作，主要的函数调用如下。
 
-![java-thread-x-readwritelock-7](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-7.png)
+![java-thread-x-readwritelock-7](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-7.png)
 
 说明: 此时，AQS的状态state为2^16 次方，即表示此时读线程数量为1
 
 * rt2线程执行rrwLock.readLock().lock操作，主要的函数调用如下。
 
-![java-thread-x-readwritelock-8](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-8.png)
+![java-thread-x-readwritelock-8](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-8.png)
 
 说明: 此时，AQS的状态state为2 * 2^16次方，即表示此时读线程数量为2。
 
 * wt1线程执行rrwLock.writeLock().lock操作，主要的函数调用如下。
 
-![java-thread-x-readwritelock-9](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-9.png)
+![java-thread-x-readwritelock-9](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-9.png)
 
 说明: 此时，在同步队列Sync queue中存在两个结点，并且wt1线程会被禁止运行
 
 * rt1线程执行rrwLock.readLock().unlock操作，主要的函数调用如下
 
-![java-thread-x-readwritelock-10](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-10.png)
+![java-thread-x-readwritelock-10](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-10.png)
 
 说明: 此时，AQS的state为2^16次方，表示还有一个读线程
 
 * rt2线程执行rrwLock.readLock().unlock操作，主要的函数调用如下。
 
-![java-thread-x-readwritelock-11](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-11.png)
+![java-thread-x-readwritelock-11](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-11.png)
 
 说明: 当rt2线程执行unlock操作后，AQS的state为0，并且wt1线程将会被unpark，其获得CPU资源就可以运行。
 
 * wt1线程获得CPU资源，继续运行，需要恢复。由于之前acquireQueued函数中的parkAndCheckInterrupt函数中被禁止的，所以，恢复到parkAndCheckInterrupt函数中，主要的函数调用如下
 
-![java-thread-x-readwritelock-12](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-12.png)
+![java-thread-x-readwritelock-12](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-12.png)
 
 说明: 最后，sync queue队列中只有一个结点，并且头结点尾节点均指向它，AQS的state值为1，表示此时有一个写线程。
 
 * wt1执行rrwLock.writeLock().unlock操作，主要的函数调用如下
 
-![java-thread-x-readwritelock-13](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-13.png)
+![java-thread-x-readwritelock-13](/knowledge/assets/images/java/concurrency/reentrantreadwritelock/java-thread-x-readwritelock-13.png)
 
 说明: 此时，AQS的state为0，表示没有任何读线程或者写线程了。并且Sync queue结构与上一个状态的结构相同，没有变化。
 

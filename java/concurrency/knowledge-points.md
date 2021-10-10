@@ -171,7 +171,7 @@ flag = true;          //语句2
 
 从 java 源代码到最终实际执行的指令序列，会分别经历下面三种重排序：
 
-![reorder](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/knowledge-points/reorder.png)
+![reorder](/knowledge/assets/images/java/concurrency/knowledge-points/reorder.png)
 
 上述的 1 属于编译器重排序，2 和 3 属于处理器重排序。这些重排序都可能会导致多线程程序出现内存可见性问题。对于编译器，JMM 的编译器重排序规则会禁止特定类型的编译器重排序（不是所有的编译器重排序都要禁止）。对于处理器重排序，JMM 的处理器重排序规则会要求 java 编译器在生成指令序列时，插入特定类型的内存屏障（memory barriers，intel 称之为 memory fence）指令，通过内存屏障指令来禁止特定类型的处理器重排序（不是所有的处理器重排序都要禁止）
 
@@ -242,7 +242,7 @@ Java提供了volatile关键字来保证可见性。
 
 在一个线程内，在程序前面的操作先行发生于后面的操作。
 
-![single-thread-rule](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/knowledge-points/single-thread-rule.png)
+![single-thread-rule](/knowledge/assets/images/java/concurrency/knowledge-points/single-thread-rule.png)
 
 2. 管程锁定规则
 
@@ -250,7 +250,7 @@ Java提供了volatile关键字来保证可见性。
 
 一个 unlock 操作先行发生于后面对同一个锁的 lock 操作。
 
-![monitor-lock-rule](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/knowledge-points/monitor-lock-rule.png)
+![monitor-lock-rule](/knowledge/assets/images/java/concurrency/knowledge-points/monitor-lock-rule.png)
 
 3. volatile 变量规则
 
@@ -258,7 +258,7 @@ Java提供了volatile关键字来保证可见性。
 
 对一个 volatile 变量的写操作先行发生于后面对这个变量的读操作
 
-![volatile-variable-rule](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/knowledge-points/volatile-variable-rule.png)
+![volatile-variable-rule](/knowledge/assets/images/java/concurrency/knowledge-points/volatile-variable-rule.png)
 
 4. 线程启动规则
 
@@ -266,7 +266,7 @@ Java提供了volatile关键字来保证可见性。
 
 Thread 对象的 start() 方法调用先行发生于此线程的每一个动作。
 
-![thread-start-rule](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/knowledge-points/thread-start-rule.png)
+![thread-start-rule](/knowledge/assets/images/java/concurrency/knowledge-points/thread-start-rule.png)
 
 5. 线程加入规则
 
@@ -274,7 +274,7 @@ Thread 对象的 start() 方法调用先行发生于此线程的每一个动作�
 
 Thread 对象的结束先行发生于 join() 方法返回。
 
-![thread-join-rule](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/knowledge-points/thread-join-rule.png)
+![thread-join-rule](/knowledge/assets/images/java/concurrency/knowledge-points/thread-join-rule.png)
 
 6. 线程中断规则
 
@@ -608,7 +608,7 @@ public class ThreadLocalExample1 {
 
 它所对应的底层结构图为:
 
-![threadlocal]((https://caohonghua.github.io/knowledge/assets/images/java/concurrency/knowledge-points/threadlocal.png)
+![threadlocal]((/knowledge/assets/images/java/concurrency/knowledge-points/threadlocal.png)
 
 每个 Thread 都有一个 ThreadLocal.ThreadLocalMap 对象，Thread 类中就定义了 ThreadLocal.ThreadLocalMap 成员。
 

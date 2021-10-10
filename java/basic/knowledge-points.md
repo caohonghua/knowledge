@@ -142,7 +142,7 @@ public final class String
 
 如果一个String对象已经被创建过了，那么就会从String Pool中取得引用。只有String是不可变的，才可能使用String Pool。
 
-![字符串常量池](https://caohonghua.github.io/knowledge/assets/images/java/basic/knowledge-points/string-constant-pool.png)
+![字符串常量池](/knowledge/assets/images/java/basic/knowledge-points/string-constant-pool.png)
 
 **安全性**
 
@@ -1176,7 +1176,7 @@ Throwable 可以用来表示任何可以作为异常抛出的类，分为两种:
 - **受检异常** : 需要用 try...catch... 语句捕获并进行处理，并且可以从异常中恢复；
 - **非受检异常** : 是程序运行时错误，例如除 0 会引发 Arithmetic Exception，此时程序崩溃并且无法恢复。
 
-![异常](https://caohonghua.github.io/knowledge/assets/images/java/basic/knowledge-points/throwable.png)
+![异常](/knowledge/assets/images/java/basic/knowledge-points/throwable.png)
 
 
 ### 9. 泛型

@@ -59,7 +59,7 @@ Hashtable之所以效率低下主要是因为其实现使用了synchronized关�
 
 简单理解就是，ConcurrentHashMap 是一个 Segment 数组，Segment 通过继承 ReentrantLock 来进行加锁，所以每次需要加锁的操作锁住的是一个 segment，这样只要保证每个 Segment 是线程安全的，也就实现了全局的线程安全
 
-![java-thread-x-concurrent-hashmap-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrenthashmap/java-thread-x-concurrent-hashmap-1.png)
+![java-thread-x-concurrent-hashmap-1](/knowledge/assets/images/java/concurrency/concurrenthashmap/java-thread-x-concurrent-hashmap-1.png)
 
 `concurrencyLevel`: 并行级别、并发数、Segment 数，怎么翻译不重要，理解它。默认是 16，也就是说 ConcurrentHashMap 有 16 个 Segments，所以理论上，这个时候，最多可以同时支持 16 个线程并发写，只要它们的操作分别分布在不同的 Segment 上。这个值可以在初始化的时候设置为其他值，但是一旦初始化以后，它是不可以扩容的。 
 
@@ -445,7 +445,7 @@ public V get(Object key) {
 
 #### 数据结构
 
-![java-thread-x-concurrent-hashmap-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrenthashmap/java-thread-x-concurrent-hashmap-2.png)
+![java-thread-x-concurrent-hashmap-2](/knowledge/assets/images/java/concurrency/concurrenthashmap/java-thread-x-concurrent-hashmap-2.png)
 
 结构上和 Java8 的 HashMap 基本上一样，不过它要保证线程安全性，所以在源码上确实要复杂一些。
 

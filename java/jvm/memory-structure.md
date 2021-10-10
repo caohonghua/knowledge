@@ -4,7 +4,7 @@ permalink: /java/jvm/memory-structure/
 
 ## JVM 基础 - JVM 内存结构
 
-![memory-structure-1](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-1.jpg)
+![memory-structure-1](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-1.jpg)
 
 * 运行时数据区
 * 一、程序计数器
@@ -69,7 +69,7 @@ permalink: /java/jvm/memory-structure/
 
 下图是 JVM 整体架构，中间部分就是 Java 虚拟机定义的各种运行时数据区域。
 
-![memory-structure-2](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-2.jpg)
+![memory-structure-2](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-2.jpg)
 
 Java 虚拟机定义了若干种程序运行期间会使用到的运行时数据区，其中有一些会随着虚拟机启动而创建，随着虚拟机退出而销毁。另外一些则是与线程一一对应的，这些与线程一一对应的数据区域会随着线程开始和结束而创建和销毁。
 
@@ -91,7 +91,7 @@ Java 虚拟机定义了若干种程序运行期间会使用到的运行时数据
 
 PC 寄存器用来存储指向下一条指令的地址，即将要执行的指令代码。由执行引擎读取下一条指令。
 
-![memory-structure-3](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-3.jpg)
+![memory-structure-3](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-3.jpg)
 
 (分析：进入class文件所在目录，执行 javap -v xx.class 反解析（或者通过 IDEA 插件 Jclasslib 直接查看，上图），可以看到当前类对应的Code区（汇编指令）、本地变量表、异常表和代码行偏移量映射表、常量池等信息。）
 
@@ -172,7 +172,7 @@ https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html#BGBCIEFC
 
 IDEA 在 debug 时候，可以在 debug 窗口看到 Frames 中各种方法的压栈和出栈情况
 
-![memory-structure-4](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-4.jpg)
+![memory-structure-4](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-4.jpg)
 
 
 #### 2.4 栈帧的内部结构
@@ -185,7 +185,7 @@ IDEA 在 debug 时候，可以在 debug 窗口看到 Frames 中各种方法的�
 * 方法返回地址（Return Address）：方法正常退出或异常退出的地址
 * 一些附加信息
 
-![memory-structure-5](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-5.jpg)
+![memory-structure-5](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-5.jpg)
 
 继续深抛栈帧中的五部分~~
 
@@ -211,7 +211,7 @@ IDEA 在 debug 时候，可以在 debug 窗口看到 Frames 中各种方法的�
 * 如果当前帧是由构造方法或实例方法创建的，那么该对象引用 this 将会存放在 index 为 0 的 Slot 处，其余的参数按照参数表顺序继续排列（这里就引出一个问题：静态方法中为什么不可以引用 this，就是因为this 变量不存在于当前方法的局部变量表中）
 * 栈帧中的局部变量表中的槽位是可以重用的，如果一个局部变量过了其作用域，那么在其作用域之后申明的新的局部变量就很有可能会复用过期局部变量的槽位，从而达到节省资源的目的。（下图中，this、a、b、c 理论上应该有 4 个变量，c 复用了 b 的槽）
 
-![memory-structure-6](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-6.jpg)
+![memory-structure-6](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-6.jpg)
 
 * 在栈帧中，与性能调优关系最为密切的就是局部变量表。在方法执行时，虚拟机使用局部变量表完成方法的传递
 * 局部变量表中的变量也是重要的垃圾回收根节点，只要被局部变量表中直接或间接引用的对象都不会被回收
@@ -248,7 +248,7 @@ HotSpot 的执行引擎采用的并非是基于寄存器的架构，但这并不
 * 在 Java 源文件被编译到字节码文件中时，所有的变量和方法引用都作为符号引用（Symbolic Reference）保存在 Class 文件的常量池中。比如：描述一个方法调用了另外的其他方法时，就是通过常量池中指向方法的符号引用来表示的，那么动态链接的作用就是为了将这些符号引用转换为调用方法的直接引用
 
 
-![memory-structure-7](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-7.jpg)
+![memory-structure-7](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-7.jpg)
 
 **JVM 是如何执行方法调用的**
 
@@ -356,7 +356,7 @@ Java 使用起来非常方便，然而有些层次的任务用 Java 实现起来
 * 老年代（养老区）：被长时间使用的对象，老年代的内存空间应该要比年轻代更大
 * 元空间（JDK1.8 之前叫永久代）：像一些方法中的操作临时对象等，JDK1.8 之前是占用 JVM 内存，JDK1.8 之后直接使用物理内存
 
-![memory-structure-8](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-8.jpg)
+![memory-structure-8](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-8.jpg)
 
 Java 虚拟机规范规定，Java 堆可以是处于物理上不连续的内存空间中，只要逻辑上是连续的即可，像磁盘空间一样。实现时，既可以是固定大小，也可以是可扩展的，主流虚拟机都是可扩展的（通过 -Xmx 和 -Xms 控制），如果堆中没有完成实例分配，并且堆无法再扩展时，就会抛出 OutOfMemoryError 异常
 
@@ -375,7 +375,7 @@ Java 虚拟机规范规定，Java 堆可以是处于物理上不连续的内存�
 
 大对象直接进入老年代（大对象是指需要大量连续内存空间的对象）。这样做的目的是避免在 Eden 区和两个Survivor 区之间发生大量的内存拷贝
 
-![memory-structure-9](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-9.jpg)
+![memory-structure-9](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-9.jpg)
 
 ##### 元空间
 
@@ -718,7 +718,7 @@ JVM 必须保存所有方法的
 栈、堆、方法区的交互关系
 
 
-![memory-structure-10](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-10.png)
+![memory-structure-10](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-10.png)
 
 #### 5.4 运行时常量池
 
@@ -734,7 +734,7 @@ JVM 必须保存所有方法的
 
 如下，我们通过 jclasslib 查看一个只有 Main 方法的简单类，字节码中的 #2 指向的就是 Constant Pool
 
-![memory-structure-11](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-11.jpg)
+![memory-structure-11](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-11.jpg)
 
 常量池可以看作是一张表，虚拟机指令根据这张常量表找到要执行的类名、方法名、参数类型、字面量等类型。
 
@@ -760,7 +760,7 @@ JVM 必须保存所有方法的
 
 http://openjdk.java.net/jeps/122
 
-![memory-structure-12](https://caohonghua.github.io/knowledge/assets/images/java/jvm/memory-structure/memory-structure-12.jpg)
+![memory-structure-12](/knowledge/assets/images/java/jvm/memory-structure/memory-structure-12.jpg)
 
 * 为永久代设置空间大小是很难确定的。
 

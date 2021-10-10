@@ -42,7 +42,7 @@ ScheduledThreadPoolExecutor继承自 ThreadPoolExecutor，为任务提供延迟�
 ### ScheduledThreadPoolExecutor数据结构
 
 
-![java-thread-x-stpe-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/scheduledthreadpoolexecutor/java-thread-x-stpe-1.png)
+![java-thread-x-stpe-1](/knowledge/assets/images/java/concurrency/scheduledthreadpoolexecutor/java-thread-x-stpe-1.png)
 
 ScheduledThreadPoolExecutor继承自 `ThreadPoolExecutor`:
 

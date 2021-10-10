@@ -42,7 +42,7 @@ permalink: /java/concurrency/blockingqueue/
 
 BlockingQueue 通常用于一个线程生产对象，而另外一个线程消费这些对象的场景。下图是对这个原理的阐述:
 
-![java-thread-x-blocking-queue-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/blockingqueue/java-thread-x-blocking-queue-1.png)
+![java-thread-x-blocking-queue-1](/knowledge/assets/images/java/concurrency/blockingqueue/java-thread-x-blocking-queue-1.png)
 
 一个线程往里边放，另外一个线程从里边取的一个 BlockingQueue。
 
@@ -78,7 +78,7 @@ deque(双端队列) 是 "Double Ended Queue" 的缩写。因此，双端队列�
 
 在线程既是一个队列的生产者又是这个队列的消费者的时候可以使用到 BlockingDeque。如果生产者线程需要在队列的两端都可以插入数据，消费者线程需要在队列的两端都可以移除数据，这个时候也可以使用 BlockingDeque。BlockingDeque 图解:
 
-![java-thread-x-blocking-deque-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/blockingqueue/java-thread-x-blocking-deque-1.png)
+![java-thread-x-blocking-deque-1](/knowledge/assets/images/java/concurrency/blockingqueue/java-thread-x-blocking-deque-1.png)
 
 #### BlockingDeque 的方法
 

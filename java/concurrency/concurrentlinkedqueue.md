@@ -37,7 +37,7 @@ permalink: /java/concurrency/concurrentlinkedqueue/
 
 通过源码分析可知，ConcurrentLinkedQueue的数据结构与LinkedBlockingQueue的数据结构相同，都是使用的链表结构。ConcurrentLinkedQueue的数据结构如下:
 
-![java-thread-x-juc-concurrentlinkedqueue-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-1.png)
+![java-thread-x-juc-concurrentlinkedqueue-1](/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-1.png)
 
 说明: ConcurrentLinkedQueue采用的链表结构，并且包含有一个头结点和一个尾结点。
 
@@ -235,15 +235,15 @@ public boolean offer(E e) {
 
 说明: offer函数用于将指定元素插入此队列的尾部。下面模拟offer函数的操作，队列状态的变化(假设单线程添加元素，连续添加10、20两个元素)
 
-![java-thread-x-juc-concurrentlinkedqueue-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-2.png)
+![java-thread-x-juc-concurrentlinkedqueue-2](/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-2.png)
 
 * 若ConcurrentLinkedQueue的初始状态如上图所示，即队列为空。单线程添加元素，此时，添加元素10，则状态如下所示
 
-![java-thread-x-juc-concurrentlinkedqueue-3](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-3.png)
+![java-thread-x-juc-concurrentlinkedqueue-3](/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-3.png)
 
 * 如上图所示，添加元素10后，tail没有变化，还是指向之前的结点，继续添加元素20，则状态如下所示
 
-![java-thread-x-juc-concurrentlinkedqueue-4](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-4.png)
+![java-thread-x-juc-concurrentlinkedqueue-4](/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-4.png)
 
 * 如上图所示，添加元素20后，tail指向了最新添加的结点
 
@@ -284,15 +284,15 @@ public E poll() {
 
 说明: 此函数用于获取并移除此队列的头，如果此队列为空，则返回null。下面模拟poll函数的操作，队列状态的变化(假设单线程操作，状态为之前offer10、20后的状态，poll两次)
 
-![java-thread-x-juc-concurrentlinkedqueue-5](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-5.png)
+![java-thread-x-juc-concurrentlinkedqueue-5](/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-5.png)
 
 * 队列初始状态如上图所示，在poll操作后，队列的状态如下图所示
 
-![java-thread-x-juc-concurrentlinkedqueue-6](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-6.png)
+![java-thread-x-juc-concurrentlinkedqueue-6](/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-6.png)
 
 * 如上图可知，poll操作后，head改变了，并且head所指向的结点的item变为了null。再进行一次poll操作，队列的状态如下图所示
 
-![java-thread-x-juc-concurrentlinkedqueue-7](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-7.png)
+![java-thread-x-juc-concurrentlinkedqueue-7](/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-7.png)
 
 * 如上图可知，poll操作后，head结点没有变化，只是指示的结点的item域变成了null
 
@@ -362,16 +362,16 @@ final Node<E> succ(Node<E> p) {
 说明: succ用于获取结点的下一个结点。如果结点的next域指向自身，则返回head头结点，否则，返回next结点。下面模拟remove函数的操作，队列状态的变化(假设单线程操作，状态为之前offer10、20后的状态，执行remove(10)、remove(20)操作)。
 
 
-![java-thread-x-juc-concurrentlinkedqueue-8](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-8.png)
+![java-thread-x-juc-concurrentlinkedqueue-8](/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-8.png)
 
 * 如上图所示，为ConcurrentLinkedQueue的初始状态，remove(10)后的状态如下图所示
 
 
-![java-thread-x-juc-concurrentlinkedqueue-9](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-9.png)
+![java-thread-x-juc-concurrentlinkedqueue-9](/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-9.png)
 
 * 如上图所示，当执行remove(10)后，head指向了head结点之前指向的结点的下一个结点，并且head结点的item域置为null。继续执行remove(20)，状态如下图所示
 
-![java-thread-x-juc-concurrentlinkedqueue-10](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-10.png)
+![java-thread-x-juc-concurrentlinkedqueue-10](/knowledge/assets/images/java/concurrency/concurrentlinkedqueue/java-thread-x-juc-concurrentlinkedqueue-10.png)
 
 * 如上图所示，执行remove(20)后，head与tail指向同一个结点，item域为null
 

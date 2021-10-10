@@ -33,7 +33,7 @@ permalink: /java/io/bio/
 * 客户端向服务器端发出请求后，客户端会一直等待(不会再做其他事情)，直到服务器端返回结果或者网络出现问题。
 * 服务器端同样的，当在处理某个客户端A发来的请求时，另一个客户端B发来的请求会等待，直到服务器端的这个处理线程完成上一个处理。
 
-![java-io-bio-1](https://caohonghua.github.io/knowledge/assets/images/java/io/bio/java-io-bio-1.png)
+![java-io-bio-1](/knowledge/assets/images/java/io/bio/java-io-bio-1.png)
 
 
 #### 传统的BIO的问题
@@ -52,7 +52,7 @@ permalink: /java/io/bio/
 
 如下图所示:
 
-![java-io-bio-2](https://caohonghua.github.io/knowledge/assets/images/java/io/bio/java-io-bio-2.png)
+![java-io-bio-2](/knowledge/assets/images/java/io/bio/java-io-bio-2.png)
 
 但是使用线程来解决这个问题实际上是有局限性的:
 
@@ -369,7 +369,7 @@ class SocketServerThread implements Runnable {
 #### 看看服务器端的执行效果
 
 
-![java-io-bio-3](https://caohonghua.github.io/knowledge/assets/images/java/io/bio/java-io-bio-3.png)
+![java-io-bio-3](/knowledge/assets/images/java/io/bio/java-io-bio-3.png)
 
 #### 问题根源
 
@@ -385,12 +385,12 @@ serverSocket.accept()会被阻塞? 这里涉及到阻塞式同步IO的工作原�
 * 服务器线程发起一个accept动作，询问操作系统 是否有新的socket套接字信息从端口X发送过来。
 
 
-![java-io-bio-4](https://caohonghua.github.io/knowledge/assets/images/java/io/bio/java-io-bio-4.png)
+![java-io-bio-4](/knowledge/assets/images/java/io/bio/java-io-bio-4.png)
 
 * 注意，是询问操作系统。也就是说socket套接字的IO模式支持是基于操作系统的，那么自然同步IO/异步IO的支持就是需要操作系统级别的了。如下图:
 
-![java-io-bio-5](https://caohonghua.github.io/knowledge/assets/images/java/io/bio/java-io-bio-5.png)
+![java-io-bio-5](/knowledge/assets/images/java/io/bio/java-io-bio-5.png)
 
-![java-io-bio-6](https://caohonghua.github.io/knowledge/assets/images/java/io/bio/java-io-bio-6.png)
+![java-io-bio-6](/knowledge/assets/images/java/io/bio/java-io-bio-6.png)
 
 如果操作系统没有发现有套接字从指定的端口X来，那么操作系统就会等待。这样serverSocket.accept()方法就会一直等待。这就是为什么accept()方法为什么会阻塞: 它内部的实现是使用的操作系统级别的同步IO

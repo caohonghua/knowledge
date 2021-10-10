@@ -16,7 +16,7 @@ permalink: /java/io/inputstream/
 
 ### InputStream 类实现关系
 
-![decorator-002](https://caohonghua.github.io/knowledge/assets/images/java/io/decorator/decorator-002.png)
+![decorator-002](/knowledge/assets/images/java/io/decorator/decorator-002.png)
 
 ### InputStream 抽象类
 

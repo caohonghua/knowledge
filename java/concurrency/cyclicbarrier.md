@@ -207,7 +207,7 @@ private int dowait(boolean timed, long nanos)
 
 说明: dowait方法的逻辑会进行一系列的判断，大致流程如下:
 
-![java-thread-x-cyclicbarrier-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-1.png)
+![java-thread-x-cyclicbarrier-1](/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-1.png)
 
 #### 核心函数 - nextGeneration函数
 
@@ -311,7 +311,7 @@ private Node enq(final Node node) {
 
 综合上面的分析可知，newGeneration函数的主要方法的调用如下，之后会通过一个例子详细讲解:
 
-![java-thread-x-cyclicbarrier-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-2.png)
+![java-thread-x-cyclicbarrier-2](/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-2.png)
 
 #### breakBarrier函数
 
@@ -389,38 +389,38 @@ main continue
 
 说明: 根据结果可知，可能会存在如下的调用时序。
 
-![java-thread-x-cyclicbarrier-3](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-3.png)
+![java-thread-x-cyclicbarrier-3](/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-3.png)
 
 说明: 由上图可知，假设t1线程的cb.await是在main线程的cb.barrierAction动作是由最后一个进入屏障的线程执行的。根据时序图，进一步分析出其内部工作流程。
 
 * main(主)线程执行cb.await操作，主要调用的函数如下。
 
-![java-thread-x-cyclicbarrier-4](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-4.png)
+![java-thread-x-cyclicbarrier-4](/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-4.png)
 
 说明: 由于ReentrantLock的默认采用非公平策略，所以在dowait函数中调用的是ReentrantLock.NonfairSync的lock函数，由于此时AQS的状态是0，表示还没有被任何线程占用，故main线程可以占用，之后在dowait中会调用trip.await函数，最终的结果是条件队列中存放了一个包含main线程的结点，并且被禁止运行了，同时，main线程所拥有的资源也被释放了，可以供其他线程获取
 
 * t1线程执行cb.await操作，其中假设t1线程的lock.lock操作在main线程释放了资源之后，则其主要调用的函数如下。
 
-![java-thread-x-cyclicbarrier-5](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-5.png)
+![java-thread-x-cyclicbarrier-5](/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-5.png)
 
 说明: 可以看到，之后condition queue(条件队列)里面有两个节点，包含t1线程的结点插入在队列的尾部，并且t1线程也被禁止了，因为执行了park操作，此时两个线程都被禁止了
 
 * t2线程执行cb.await操作，其中假设t2线程的lock.lock操作在t1线程释放了资源之后，则其主要调用的函数如下
 
-![java-thread-x-cyclicbarrier-6](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-6.png)
+![java-thread-x-cyclicbarrier-6](/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-6.png)
 
 说明: 由上图可知，在t2线程执行await操作后，会直接执行command.run方法，不是重新开启一个线程，而是最后进入屏障的线程执行。同时，会将Condition queue中的所有节点都转移到Sync queue中，并且最后main线程会被unpark，可以继续运行。main线程获取cpu资源，继续运行
 
 * main线程获取cpu资源，继续运行，下图给出了主要的方法调用:
 
-![java-thread-x-cyclicbarrier-7](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-7.png)
+![java-thread-x-cyclicbarrier-7](/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-7.png)
 
 说明: 其中，由于main线程是在AQS.CO的wait中被park的，所以恢复时，会继续在该方法中运行。运行过后，t1线程被unpark，它获得cpu资源可以继续运行。
 
 * t1线程获取cpu资源，继续运行，下图给出了主要的方法调用。
 
 
-![java-thread-x-cyclicbarrier-8](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-8.png)
+![java-thread-x-cyclicbarrier-8](/knowledge/assets/images/java/concurrency/cyclicbarrier/java-thread-x-cyclicbarrier-8.png)
 
 说明: 其中，由于t1线程是在AQS.CO的wait方法中被park，所以恢复时，会继续在该方法中运行。运行过后，Sync queue中保持着一个空节点。头结点与尾节点均指向它
 

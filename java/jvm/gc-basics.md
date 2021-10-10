@@ -72,7 +72,7 @@ public class ReferenceCountingGC {
 
 通过 GC Roots 作为起始点进行搜索，能够到达到的对象都是存活的，不可达的对象可被回收。
 
-![gc-basics-1](https://caohonghua.github.io/knowledge/assets/images/java/jvm/gc-basics/gc-basics-1.png)
+![gc-basics-1](/knowledge/assets/images/java/jvm/gc-basics/gc-basics-1.png)
 
 Java 虚拟机使用该算法来判断对象是否可被回收，在 Java 中 GC Roots 一般包含以下内容:
 
@@ -161,7 +161,7 @@ obj = null;
 
 #### 1. 标记 - 清除
 
-![gc-basics-2](https://caohonghua.github.io/knowledge/assets/images/java/jvm/gc-basics/gc-basics-2.jpg)
+![gc-basics-2](/knowledge/assets/images/java/jvm/gc-basics/gc-basics-2.jpg)
 
 将存活的对象进行标记，然后清理掉未被标记的对象。
 
@@ -172,13 +172,13 @@ obj = null;
 
 #### 2. 标记 - 整理
 
-![gc-basics-3](https://caohonghua.github.io/knowledge/assets/images/java/jvm/gc-basics/gc-basics-3.jpg)
+![gc-basics-3](/knowledge/assets/images/java/jvm/gc-basics/gc-basics-3.jpg)
 
 让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存。
 
 #### 3. 复制
 
-![gc-basics-4](https://caohonghua.github.io/knowledge/assets/images/java/jvm/gc-basics/gc-basics-4.jpg)
+![gc-basics-4](/knowledge/assets/images/java/jvm/gc-basics/gc-basics-4.jpg)
 
 将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。
 
@@ -200,7 +200,7 @@ HotSpot 虚拟机的 Eden 和 Survivor 的大小比例默认为 8:1，保证了�
 
 ### 垃圾收集器
 
-![gc-basics-5](https://caohonghua.github.io/knowledge/assets/images/java/jvm/gc-basics/gc-basics-5.jpg)
+![gc-basics-5](/knowledge/assets/images/java/jvm/gc-basics/gc-basics-5.jpg)
 
 以上是 HotSpot 虚拟机中的 7 个垃圾收集器，连线表示垃圾收集器可以配合使用。
 
@@ -210,7 +210,7 @@ HotSpot 虚拟机的 Eden 和 Survivor 的大小比例默认为 8:1，保证了�
 
 #### 1. Serial 收集器
 
-![gc-basics-6](https://caohonghua.github.io/knowledge/assets/images/java/jvm/gc-basics/gc-basics-6.jpg)
+![gc-basics-6](/knowledge/assets/images/java/jvm/gc-basics/gc-basics-6.jpg)
 
 Serial 翻译为串行，也就是说它以串行的方式执行。
 

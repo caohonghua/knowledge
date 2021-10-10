@@ -241,7 +241,7 @@ public class FinalDemo {
 
 我们来画下存在的一种可能执行时序图，如下：
 
-![java-thread-x-key-final-1](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/final/java-thread-x-key-final-1.png)
+![java-thread-x-key-final-1](/knowledge/assets/images/java/concurrency/final/java-thread-x-key-final-1.png)
 
 由于a,b之间没有数据依赖性，普通域(普通变量)a可能会被重排序到构造函数之外，线程B就有可能读到的是普通变量a初始化之前的值(零值)，这样就可能出现错误。而final域变量b，根据重排序规则，会禁止final修饰的变量b重排序到构造函数之外，从而b能够正确赋值，线程B就能够读到final变量初始化后的值。 因此，写final域的重排序规则可以确保：在对象引用为任意线程可见之前，对象的final域已经被正确初始化过了，而普通域就不具有这个保障。比如在上例，线程B有可能就是一个未正确初始化的对象finalDemo。
 
@@ -256,7 +256,7 @@ read()方法主要包含了三个操作：
 - 初次读引用变量finalDemo的final域b;
 
 假设线程A写过程没有重排序，那么线程A和线程B有一种的可能执行时序为下图：
-![java-thread-x-key-final-2](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/final/java-thread-x-key-final-2.png)
+![java-thread-x-key-final-2](/knowledge/assets/images/java/concurrency/final/java-thread-x-key-final-2.png)
 
 读对象的普通域被重排序到了读对象引用的前面就会出现线程B还未读到对象引用就在读取该对象的普通域变量，这显然是错误的操作。而final域的读操作就“限定”了在读final域变量前已经读到了该对象的引用，从而就可以避免这种情况。 读final域的重排序规则可以确保：在读一个对象的final域之前，一定会先读这个包含这个final域的对象的引用。
 
@@ -295,7 +295,7 @@ public class FinalReferenceDemo {
 
 针对上面的实例程序，线程线程A执行wirterOne方法，执行完后线程B执行writerTwo方法，然后线程C执行reader方法。下图就以这种执行时序出现的一种情况来讨论(耐心看完才有收获)。
 
-![java-thread-x-key-final-3](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/final/java-thread-x-key-final-3.png)
+![java-thread-x-key-final-3](/knowledge/assets/images/java/concurrency/final/java-thread-x-key-final-3.png)
 
 由于对final域的写禁止重排序到构造方法外，因此1和3不能被重排序。由于一个final域的引用对象的成员域写入不能与随后将这个被构造出来的对象赋给引用变量重排序，因此2和3不能重排序。
 
@@ -348,7 +348,7 @@ public class FinalReferenceEscapeDemo {
 
 可能的执行时序如图所示：
 
-![java-thread-x-key-final-4](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/final/java-thread-x-key-final-4.png)
+![java-thread-x-key-final-4](/knowledge/assets/images/java/concurrency/final/java-thread-x-key-final-4.png)
 
 假设一个线程A执行writer方法另一个线程执行reader方法。因为构造函数中操作1和2之间没有数据依赖性，1和2可以重排序，先执行了2，这个时候引用对象referenceDemo是个没有完全初始化的对象，而当线程B去读取该对象时就会出错。尽管依然满足了final域写重排序规则：在引用对象对所有线程可见时，其final域已经完全初始化成功。但是，引用对象“this”逸出，该代码依然存在线程安全的问题。
 

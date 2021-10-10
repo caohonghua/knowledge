@@ -122,7 +122,7 @@ java -jar arthas-boot.jar
 
 * https://alibaba.github.io/arthas/dashboard
 
-![java-jvm-arthas-1](https://caohonghua.github.io/knowledge/assets/images/java/jvm/arthas/java-jvm-arthas-1.png)
+![java-jvm-arthas-1](/knowledge/assets/images/java/jvm/arthas/java-jvm-arthas-1.png)
 
 ##### Thread
 
@@ -278,7 +278,7 @@ ts=2018-09-18 10:11:45;thread_name=http-bio-8080-exec-10;id=d9;is_daemon=true;pr
 
 观察方法执行的时候哪个子调用比较慢:
 
-![java-jvm-arthas-2](https://caohonghua.github.io/knowledge/assets/images/java/jvm/arthas/java-jvm-arthas-2.png)
+![java-jvm-arthas-2](/knowledge/assets/images/java/jvm/arthas/java-jvm-arthas-2.png)
 
 ##### Watch
 
@@ -359,7 +359,7 @@ $ classloader
 
 * https://alibaba.github.io/arthas/web-console
 
-![java-jvm-arthas-3](https://caohonghua.github.io/knowledge/assets/images/java/jvm/arthas/java-jvm-arthas-3.png)
+![java-jvm-arthas-3](/knowledge/assets/images/java/jvm/arthas/java-jvm-arthas-3.png)
 
 #### Arthas 命令集
 

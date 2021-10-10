@@ -50,7 +50,7 @@ permalink: /java/concurrency/multithreading/
 
 ### 线程状态转换
 
-![status](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/multithreading/status.png)
+![status](/knowledge/assets/images/java/concurrency/multithreading/status.png)
 
 #### 1. 新建（New）
 

@@ -45,7 +45,7 @@ Java 的并发采用的是共享内存模型，Java 线程之间的通信总是�
 
 Java 线程之间的通信由 Java 内存模型（本文简称为 JMM）控制，JMM 决定一个线程对共享变量的写入何时对另一个线程可见。从抽象的角度来看，JMM 定义了线程和主内存之间的抽象关系：线程之间的共享变量存储在主内存（main memory）中，每个线程都有一个私有的本地内存（local memory），本地内存中存储了该线程以读 / 写共享变量的副本。本地内存是 JMM 的一个抽象概念，并不真实存在。它涵盖了缓存，写缓冲区，寄存器以及其他的硬件和编译器优化。Java 内存模型的抽象示意图如下：
 
-![java-jmm-1](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-1.png)
+![java-jmm-1](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-1.png)
 
 从上图来看，线程 A 与线程 B 之间如要通信的话，必须要经历下面 2 个步骤：
 
@@ -54,7 +54,7 @@ Java 线程之间的通信由 Java 内存模型（本文简称为 JMM）控制�
 
 下面通过示意图来说明这两个步骤：
 
-![java-jmm-2](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-2.png)
+![java-jmm-2](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-2.png)
 
 如上图所示，本地内存 A 和 B 有主内存中共享变量 x 的副本。假设初始时，这三个内存中的 x 值都为 0。线程 A 在执行时，把更新后的 x 值（假设值为 1）临时存放在自己的本地内存 A 中。当线程 A 和线程 B 需要通信时，线程 A 首先会把自己本地内存中修改后的 x 值刷新到主内存中，此时主内存中的 x 值变为了 1。随后，线程 B 到主内存中去读取线程 A 更新后的 x 值，此时线程 B 的本地内存的 x 值也变为了 1。
 
@@ -70,7 +70,7 @@ Java 线程之间的通信由 Java 内存模型（本文简称为 JMM）控制�
 
 从 java 源代码到最终实际执行的指令序列，会分别经历下面三种重排序：
 
-![java-jmm-3](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-3.png)
+![java-jmm-3](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-3.png)
 
 上述的 1 属于编译器重排序，2 和 3 属于处理器重排序。这些重排序都可能会导致多线程程序出现内存可见性问题。对于编译器，JMM 的编译器重排序规则会禁止特定类型的编译器重排序（不是所有的编译器重排序都要禁止）。对于处理器重排序，JMM 的处理器重排序规则会要求 java 编译器在生成指令序列时，插入特定类型的内存屏障（memory barriers，intel 称之为 memory fence）指令，通过内存屏障指令来禁止特定类型的处理器重排序（不是所有的处理器重排序都要禁止）
 
@@ -94,7 +94,7 @@ y = a; //B2
 
 假设处理器 A 和处理器 B 按程序的顺序并行执行内存访问，最终却可能得到 x = y = 0 的结果。具体的原因如下图所示：
 
-![java-jmm-4](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-4.png)
+![java-jmm-4](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-4.png)
 
 这里处理器 A 和处理器 B 可以同时把共享变量写入自己的写缓冲区（A1，B1），然后从内存中读取另一个共享变量（A2，B2），最后才把自己写缓存区中保存的脏数据刷新到内存中（A3，B3）。当以这种时序执行时，程序就可以得到 x = y = 0 的结果。
 
@@ -146,7 +146,7 @@ StoreLoad Barriers 是一个“全能型”的屏障，它同时具有其他三�
 
 happens-before 与 JMM 的关系如下图所示：
 
-![java-jmm-5](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-5.png)
+![java-jmm-5](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-5.png)
 
 如上图所示，一个 happens-before 规则通常对应于多个编译器重排序规则和处理器重排序规则。对于 java 程序员来说，happens-before 规则简单易懂，它避免程序员为了理解 JMM 提供的内存可见性保证而去学习复杂的重排序规则以及这些规则的具体实现
 
@@ -183,11 +183,11 @@ double area = pi * r * r; //C
 
 上面三个操作的数据依赖关系如下图所示：
 
-![java-jmm-6](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-6.png)
+![java-jmm-6](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-6.png)
 
 如上图所示，A 和 C 之间存在数据依赖关系，同时 B 和 C 之间也存在数据依赖关系。因此在最终执行的指令序列中，C 不能被重排序到 A 和 B 的前面（C 排到 A 和 B 的前面，程序的结果将会被改变）。但 A 和 B 之间没有数据依赖关系，编译器和处理器可以重排序 A 和 B 之间的执行顺序。下图是该程序的两种执行顺序：
 
-![java-jmm-7](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-7.png)
+![java-jmm-7](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-7.png)
 
 as-if-serial 语义把单线程程序保护了起来，遵守 as-if-serial 语义的编译器，runtime 和处理器共同为编写单线程程序的程序员创建了一个幻觉：单线程程序是按程序的顺序来执行的。as-if-serial 语义使单线程程序员无需担心重排序会干扰他们，也无需担心内存可见性问题
 
@@ -234,7 +234,7 @@ flag 变量是个标记，用来标识变量 a 是否已被写入。这里假设
 
 由于操作 1 和操作 2 没有数据依赖关系，编译器和处理器可以对这两个操作重排序；同样，操作 3 和操作 4 没有数据依赖关系，编译器和处理器也可以对这两个操作重排序。让我们先来看看，当操作 1 和操作 2 重排序时，可能会产生什么效果? 请看下面的程序执行时序图
 
-![java-jmm-8](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-8.png)
+![java-jmm-8](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-8.png)
 
 如上图所示，操作 1 和操作 2 做了重排序。程序执行时，线程 A 首先写标记变量 flag，随后线程 B 读这个变量。由于条件判断为真，线程 B 将读取变量 a。此时，变量 a 还根本没有被线程 A 写入，在这里多线程程序的语义被重排序破坏了！
 
@@ -242,7 +242,7 @@ flag 变量是个标记，用来标识变量 a 是否已被写入。这里假设
 
 下面再让我们看看，当操作 3 和操作 4 重排序时会产生什么效果（借助这个重排序，可以顺便说明控制依赖性）。下面是操作 3 和操作 4 重排序后，程序的执行时序图：
 
-![java-jmm-9](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-9.png)
+![java-jmm-9](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-9.png)
 
 在程序中，操作 3 和操作 4 存在控制依赖关系。当代码中存在控制依赖性时，会影响指令序列执行的并行度。为此，编译器和处理器会采用猜测（Speculation）执行来克服控制相关性对并行度的影响。以处理器的猜测执行为例，执行线程 B 的处理器可以提前读取并计算 a*a，然后把计算结果临时保存到一个名为重排序缓冲（reorder buffer ROB）的硬件缓存中。当接下来操作 3 的条件判断为真时，就把该计算结果写入变量 i 中。
 
@@ -274,7 +274,7 @@ JMM 对正确同步的多线程程序的内存一致性做了如下保证
 +（不管程序是否同步）所有线程都只能看到一个单一的操作执行顺序。在顺序一致性内存模型中，每个操作都必须原子执行且立刻对所有线程可见。
 顺序一致性内存模型为程序员提供的视图如下：
 
-![java-jmm-10](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-10.png)
+![java-jmm-10](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-10.png)
 
 在概念上，顺序一致性模型有一个单一的全局内存，这个内存通过一个左右摆动的开关可以连接到任意一个线程。同时，每一个线程必须按程序的顺序来执行内存读 / 写操作。从上图我们可以看出，在任意时间点最多只能有一个线程可以连接到内存。当多个线程并发执行时，图中的开关装置能把所有线程的所有内存读 / 写操作串行化。
 
@@ -284,11 +284,11 @@ JMM 对正确同步的多线程程序的内存一致性做了如下保证
 
 假设这两个线程使用监视器来正确同步：A 线程的三个操作执行后释放监视器，随后 B 线程获取同一个监视器。那么程序在顺序一致性模型中的执行效果将如下图所示：
 
-![java-jmm-11](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-11.png)
+![java-jmm-11](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-11.png)
 
 现在我们再假设这两个线程没有做同步，下面是这个未同步程序在顺序一致性模型中的执行示意图：
 
-![java-jmm-12](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-12.png)
+![java-jmm-12](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-12.png)
 
 未同步程序在顺序一致性模型中虽然整体执行顺序是无序的，但所有线程都只能看到一个一致的整体执行顺序。以上图为例，线程 A 和 B 看到的执行顺序都是：B1->A1->A2->B2->A3->B3。之所以能得到这个保证是因为顺序一致性内存模型中的每个操作必须立即对任意线程可见
 
@@ -321,7 +321,7 @@ class SynchronizedExample {
 
 上面示例代码中，假设 A 线程执行 writer() 方法后，B 线程执行 reader() 方法。这是一个正确同步的多线程程序。根据 JMM 规范，该程序的执行结果将与该程序在顺序一致性模型中的执行结果相同。下面是该程序在两个内存模型中的执行时序对比图：
 
-![java-jmm-13](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-13.png)
+![java-jmm-13](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-13.png)
 
 在顺序一致性模型中，所有操作完全按程序的顺序串行执行。而在 JMM 中，临界区内的代码可以重排序（但 JMM 不允许临界区内的代码“逸出”到临界区之外，那样会破坏监视器的语义）。JMM 会在退出监视器和进入监视器这两个关键时间点做一些特别处理，使得线程在这两个时间点具有与顺序一致性模型相同的内存视图（具体细节后文会说明）。虽然线程 A 在临界区内做了重排序，但由于监视器的互斥执行的特性，这里的线程 B 根本无法“观察”到线程 A 在临界区内的重排序。这种重排序既提高了执行效率，又没有改变程序的执行结果。
 
@@ -341,7 +341,7 @@ JMM 不保证未同步程序的执行结果与该程序在顺序一致性模型�
 
 第 3 个差异与处理器总线的工作机制密切相关。在计算机中，数据通过总线在处理器和内存之间传递。每次处理器和内存之间的数据传递都是通过一系列步骤来完成的，这一系列步骤称之为总线事务（bus transaction）。总线事务包括读事务（read transaction）和写事务（write transaction）。读事务从内存传送数据到处理器，写事务从处理器传送数据到内存，每个事务会读 / 写内存中一个或多个物理上连续的字。这里的关键是，总线会同步试图并发使用总线的事务。在一个处理器执行总线事务期间，总线会禁止其它所有的处理器和 I/O 设备执行内存的读 / 写。下面让我们通过一个示意图来说明总线的工作机制：
 
-![java-jmm-14](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-14.png)
+![java-jmm-14](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-14.png)
 
 如上图所示，假设处理器 A，B 和 C 同时向总线发起总线事务，这时总线仲裁（bus arbitration）会对竞争作出裁决，这里我们假设总线在仲裁后判定处理器 A 在竞争中获胜（总线仲裁会确保所有处理器都能公平的访问内存）。此时处理器 A 继续它的总线事务，而其它两个处理器则要等待处理器 A 的总线事务完成后才能开始再次执行内存访问。假设在处理器 A 执行总线事务期间（不管这个总线事务是读事务还是写事务），处理器 D 向总线发起了总线事务，此时处理器 D 的这个请求会被总线禁止
 
@@ -351,7 +351,7 @@ JMM 不保证未同步程序的执行结果与该程序在顺序一致性模型�
 
 当单个内存操作不具有原子性，将可能会产生意想不到后果。请看下面示意图：
 
-![java-jmm-15](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-15.png)
+![java-jmm-15](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-15.png)
 
 如上图所示，假设处理器 A 写一个 long 型变量，同时处理器 B 要读这个 long 型变量。处理器 A 中 64 位的写操作被拆分为两个 32 位的写操作，且这两个 32 位的写操作被分配到不同的写事务中执行。同时处理器 B 中 64 位的读操作被拆分为两个 32 位的读操作，且这两个 32 位的读操作被分配到同一个的读事务中执行。当处理器 A 和 B 按上图的时序来执行时，处理器 B 将看到仅仅被处理器 A“写了一半“的无效值
 
@@ -384,7 +384,7 @@ JMM 不保证未同步程序的执行结果与该程序在顺序一致性模型�
 
 由于常见的处理器内存模型比 JMM 要弱，java 编译器在生成字节码时，会在执行指令序列的适当位置插入内存屏障来限制处理器的重排序。同时，由于各种处理器内存模型的强弱并不相同，为了在不同的处理器平台向程序员展示一个一致的内存模型，JMM 在不同的处理器中需要插入的内存屏障的数量和种类也不相同。下图展示了 JMM 在不同处理器内存模型中需要插入的内存屏障的示意图：
 
-![java-jmm-16](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-16.png)
+![java-jmm-16](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-16.png)
 
 如上图所示，JMM 屏蔽了不同处理器内存模型的差异，它在不同的处理器平台之上为 java 程序员呈现了一个一致的内存模型。
 
@@ -392,7 +392,7 @@ JMM 不保证未同步程序的执行结果与该程序在顺序一致性模型�
 
 JMM 是一个语言级的内存模型，处理器内存模型是硬件级的内存模型，顺序一致性内存模型是一个理论参考模型。下面是语言内存模型，处理器内存模型和顺序一致性内存模型的强弱对比示意图：
 
-![java-jmm-17](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-17.png)
+![java-jmm-17](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-17.png)
 
 从上图我们可以看出：常见的 4 种处理器内存模型比常用的 3 中语言内存模型要弱，处理器内存模型和语言内存模型都比顺序一致性内存模型要弱。同处理器内存模型一样，越是追求执行性能的语言，内存模型设计的会越弱
 
@@ -431,7 +431,7 @@ JMM 对这两种不同性质的重排序，采取了不同的策略：
 
 下面是 JMM 的设计示意图：
 
-![java-jmm-18](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-18.png)
+![java-jmm-18](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-18.png)
 
 从上图可以看出两点：
 
@@ -451,7 +451,7 @@ Java 程序的内存可见性保证按程序类型可以分为下列三类：
 
 下图展示了这三类程序在 JMM 中与在顺序一致性内存模型中的执行结果的异同：
 
-![java-jmm-19](https://caohonghua.github.io/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-19.png)
+![java-jmm-19](/knowledge/assets/images/java/jvm/detailed-memory-model/java-jmm-19.png)
 
 只要多线程程序是正确同步的，JMM 保证该程序在任意的处理器平台上的执行结果，与该程序在顺序一致性内存模型中的执行结果一致。
 

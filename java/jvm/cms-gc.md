@@ -101,7 +101,7 @@ GC 问题处理能力能不能系统性掌握？一些影响因素都是互为�
 
 想要系统性地掌握 GC 问题处理，笔者这里给出一个学习路径，整体文章的框架也是按照这个结构展开，主要分四大步。
 
-![cms-gc-1](https://caohonghua.github.io/knowledge/assets/images/java/jvm/cms-gc/cms-gc-1.png)
+![cms-gc-1](/knowledge/assets/images/java/jvm/cms-gc/cms-gc-1.png)
 
 * 建立知识体系： 从 JVM 的内存结构到垃圾收集的算法和收集器，学习 GC 的基础知识，掌握一些常用的 GC 问题分析工具。
 
@@ -129,7 +129,7 @@ GC 问题处理能力能不能系统性掌握？一些影响因素都是互为�
 
 从 JCP（Java Community Process）的官网中可以看到，目前 Java 版本最新已经到了 Java 16，未来的 Java 17 以及现在的 Java 11 和 Java 8 是 LTS 版本，JVM 规范也在随着迭代在变更，由于本文主要讨论 CMS，此处还是放 Java 8 的内存结构。
 
-![cms-gc-2](https://caohonghua.github.io/knowledge/assets/images/java/jvm/cms-gc/cms-gc-2.png)
+![cms-gc-2](/knowledge/assets/images/java/jvm/cms-gc/cms-gc-2.png)
 
 GC 主要工作在 Heap 区和 MetaSpace 区（上图蓝色部分），在 Direct Memory 中，如果使用的是 DirectByteBuffer，那么在分配内存不够时则是 GC 通过 Cleaner#clean 间接管理。
 
@@ -163,12 +163,12 @@ Copying（复制）： 将空间分为两个大小相同的 From 和 To 两个�
 
 三种算法在是否移动对象、空间和时间方面的一些对比，假设存活对象数量为 L、堆空间大小为 H，则：
 
-![cms-gc-3](https://caohonghua.github.io/knowledge/assets/images/java/jvm/cms-gc/cms-gc-3.png)
+![cms-gc-3](/knowledge/assets/images/java/jvm/cms-gc/cms-gc-3.png)
 
 
 把 mark、sweep、compaction、copying 这几种动作的耗时放在一起看，大致有这样的关系：
 
-![cms-gc-4](https://caohonghua.github.io/knowledge/assets/images/java/jvm/cms-gc/cms-gc-4.png)
+![cms-gc-4](/knowledge/assets/images/java/jvm/cms-gc/cms-gc-4.png)
 
 虽然 compaction 与 copying 都涉及移动对象，但取决于具体算法，compaction 可能要先计算一次对象的目标地址，然后修正指针，最后再移动对象。copying 则可以把这几件事情合为一体来做，所以可以快一些。另外，还需要留意 GC 带来的开销不能只看 Collector 的耗时，还得看 Allocator 。如果能保证内存没碎片，分配就可以用 pointer bumping 方式，只需要挪一个指针就完成了分配，非常快。而如果内存有碎片就得用 freelist 之类的方式管理，分配速度通常会慢一些
 
@@ -176,7 +176,7 @@ Copying（复制）： 将空间分为两个大小相同的 From 和 To 两个�
 
 目前在 Hotspot VM 中主要有分代收集和分区收集两大类，具体可以看下面的这个图，不过未来会逐渐向分区收集发展。在美团内部，有部分业务尝试用了 ZGC（感兴趣的同学可以学习下这篇文章 新一代垃圾回收器ZGC的探索与实践  (opens new window)），其余基本都停留在 CMS 和 G1 上。另外在 JDK11 后提供了一个不执行任何垃圾回收动作的回收器 Epsilon（A No-Op Garbage Collector）用作性能分析。另外一个就是 Azul 的 Zing JVM，其 C4（Concurrent Continuously Compacting Collector）收集器也在业内有一定的影响力
 
-![cms-gc-5](https://caohonghua.github.io/knowledge/assets/images/java/jvm/cms-gc/cms-gc-5.png)
+![cms-gc-5](/knowledge/assets/images/java/jvm/cms-gc/cms-gc-5.png)
 
 ##### 2.5.1 分代收集器
 

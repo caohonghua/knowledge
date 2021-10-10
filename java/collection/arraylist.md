@@ -192,7 +192,7 @@ size(), isEmpty(), get(), set()方法均能在常数时间内完成，add()方�
 
 ```
 
-![ArrayList_grow](https://caohonghua.github.io/knowledge/assets/images/java/collection/arraylist/grow.png)
+![ArrayList_grow](/knowledge/assets/images/java/collection/arraylist/grow.png)
 
 
 
@@ -235,7 +235,7 @@ size(), isEmpty(), get(), set()方法均能在常数时间内完成，add()方�
 
 ```
 
-![ArrayList_add](https://caohonghua.github.io/knowledge/assets/images/java/collection/arraylist/add.png)
+![ArrayList_add](/knowledge/assets/images/java/collection/arraylist/add.png)
 
 `add(int index, E e)`需要先对元素进行移动，然后完成插入操作，也就意味着该方法有着线性的时间复杂度。
 

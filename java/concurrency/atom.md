@@ -124,7 +124,7 @@ Unsafe是位于sun.misc包下的一个类，主要提供一些用于执行低级
 
 先来看下这张图，对UnSafe类总体功能：
 
-![java-thread-x-atomicinteger-unsafe](https://caohonghua.github.io/knowledge/assets/images/java/concurrency/atom/java-thread-x-atomicinteger-unsafe.png)
+![java-thread-x-atomicinteger-unsafe](/knowledge/assets/images/java/concurrency/atom/java-thread-x-atomicinteger-unsafe.png)
 
 如上图所示，Unsafe提供的API大致可分为内存操作、CAS、Class相关、对象操作、线程调度、系统信息获取、内存屏障、数组操作等几类，下面将对其相关方法和应用场景进行详细介绍.
 
