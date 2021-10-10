@@ -2,9 +2,7 @@
 permalink: /java/
 ---
 
-## Java Worker
-
-包含Java工作者日常工作需要的技能。
+## Java
 
 ### Java基础
 * [面向对象](/knowledge/java/basic/object-oriented/)
