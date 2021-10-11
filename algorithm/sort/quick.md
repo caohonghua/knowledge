@@ -1,5 +1,5 @@
 ---
-permalink: /algorithm/quick/
+permalink: /algorithm/sort/quick/
 ---
 
 ## 排序 - 快速排序(Quick Sort)
