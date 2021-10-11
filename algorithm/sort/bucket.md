@@ -1,5 +1,5 @@
 ---
-permalink: /algorithm/bucket/
+permalink: /algorithm/sort/bucket/
 ---
 
 ## 排序 - 桶排序(Bucket Sort)
