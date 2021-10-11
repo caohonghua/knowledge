@@ -1,5 +1,5 @@
 ---
-permalink: /algorithm/shell/
+permalink: /algorithm/sort/shell/
 ---
 
 ## 排序 - Shell排序(Shell Sort)
