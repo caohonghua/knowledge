@@ -1,5 +1,5 @@
 ---
-permalink: /algorithm/heap/
+permalink: /algorithm/sort/heap/
 ---
 
 ## 排序 - 堆排序(Heap Sort)
