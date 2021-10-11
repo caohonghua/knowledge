@@ -1,5 +1,5 @@
 ---
-permalink: /algorithm/merge/
+permalink: /algorithm/sort/merge/
 ---
 
 ## 排序 - 归并排序(Merge Sort)
