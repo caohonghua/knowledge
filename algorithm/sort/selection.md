@@ -1,5 +1,5 @@
 ---
-permalink: /algorithm/selection/
+permalink: /algorithm/sort/selection/
 ---
 
 ## 排序 - 选择排序(Selection sort)
