@@ -26,16 +26,16 @@ permalink: /algorithm/
 
 ### 常见排序算法
 
-* [知识体系]
-* [冒泡排序(Bubble Sort)]
-* [快速排序(Quick Sort)]
-* [插入排序(Insertion Sort)]
-* [希尔排序(Shell Sort)]
-* [选择排序(Selection Sort)]
-* [堆排序(Heap Sort)]
-* [归并排序(Merge Sort)]
-* [桶排序(Bucket Sort)]
-* [基数排序(Radix Sort)]
+* [知识体系](/knowledge/algorithm/overview/)
+* [冒泡排序(Bubble Sort)](/knowledge/algorithm/bubble/)
+* [快速排序(Quick Sort)](/knowledge/algorithm/quick/)
+* [插入排序(Insertion Sort)](/knowledge/algorithm/insertion/)
+* [希尔排序(Shell Sort)](/knowledge/algorithm/shell/)
+* [选择排序(Selection Sort)](/knowledge/algorithm/selection/)
+* [堆排序(Heap Sort)](/knowledge/algorithm/heap/)
+* [归并排序(Merge Sort)](/knowledge/algorithm/merge/)
+* [桶排序(Bucket Sort)](/knowledge/algorithm/bucket/)
+* [基数排序(Radix Sort)](/knowledge/algorithm/radix/)
 
 ### 算法思想
 
