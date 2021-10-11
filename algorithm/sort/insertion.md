@@ -1,5 +1,5 @@
 ---
-permalink: /algorithm/insertion/
+permalink: /algorithm/sort/insertion/
 ---
 
 ## 排序 - 插入排序(Insertion Sort)
