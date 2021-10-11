@@ -1,5 +1,5 @@
 ---
-permalink: /algorithm/bubble/
+permalink: /algorithm/sort/bubble/
 ---
 
 ## 排序 - 冒泡排序(Bubble Sort)
