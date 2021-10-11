@@ -26,26 +26,26 @@ permalink: /algorithm/
 
 ### 常见排序算法
 
-* [知识体系](/knowledge/algorithm/overview/)
-* [冒泡排序(Bubble Sort)](/knowledge/algorithm/bubble/)
-* [快速排序(Quick Sort)](/knowledge/algorithm/quick/)
-* [插入排序(Insertion Sort)](/knowledge/algorithm/insertion/)
-* [希尔排序(Shell Sort)](/knowledge/algorithm/shell/)
-* [选择排序(Selection Sort)](/knowledge/algorithm/selection/)
-* [堆排序(Heap Sort)](/knowledge/algorithm/heap/)
-* [归并排序(Merge Sort)](/knowledge/algorithm/merge/)
-* [桶排序(Bucket Sort)](/knowledge/algorithm/bucket/)
-* [基数排序(Radix Sort)](/knowledge/algorithm/radix/)
+* [知识体系](/knowledge/algorithm/sort/overview/)
+* [冒泡排序(Bubble Sort)](/knowledge/algorithm/sort/bubble/)
+* [快速排序(Quick Sort)](/knowledge/algorithm/sort/quick/)
+* [插入排序(Insertion Sort)](/knowledge/algorithm/sort/insertion/)
+* [希尔排序(Shell Sort)](/knowledge/algorithm/sort/shell/)
+* [选择排序(Selection Sort)](/knowledge/algorithm/sort/selection/)
+* [堆排序(Heap Sort)](/knowledge/algorithm/sort/heap/)
+* [归并排序(Merge Sort)](/knowledge/algorithm/sort/merge/)
+* [桶排序(Bucket Sort)](/knowledge/algorithm/sort/bucket/)
+* [基数排序(Radix Sort)](/knowledge/algorithm/sort/radix/)
 
 ### 算法思想
 
-* [知识体系]
-* [分治算法]
-* [动态规划算法]
-* [贪心算法]
-* [二分法]
-* [搜索算法]
-* [回溯算法]
+* [知识体系](/knowledge/algorithm/idea/overview/)
+* [分治算法](/knowledge/algorithm/idea/divide/)
+* [动态规划算法](/knowledge/algorithm/idea/dynamic/)
+* [贪心算法](/knowledge/algorithm/idea/greedy/)
+* [二分法](/knowledge/algorithm/idea/binary/)
+* [搜索算法](/knowledge/algorithm/idea/search/)
+* [回溯算法](/knowledge/algorithm/idea/backtracking/)
 
 ### 领域算法
 
