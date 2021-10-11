@@ -1,5 +1,5 @@
 ---
-permalink: /algorithm/radix/
+permalink: /algorithm/sort/radix/
 ---
 
 ## 排序 - 基数排序(Radix Sort)
