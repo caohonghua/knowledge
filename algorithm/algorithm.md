@@ -6,22 +6,22 @@ permalink: /algorithm/
 
 ### 数据结构基础
 
-* [知识体系]
-* [线性表 - 数组和矩阵]
-* [线性表 - 链表]
-* [线性表(散列) - 哈希表]
-* [线性表 - 栈和队列]
-* [树 - 基础和Overview]
-* [树 - 二叉搜索树BST]
-* [树 - 平衡二叉树AVL]
-* [树 - 红黑树R-B Tree]
-* [树 - 哈夫曼树(Huffman Tree)]
-* [树 - 前缀树(Trie Tree)]
-* [图 - 基础和Overview]
-* [图 - 遍历(BFS & DFS)]
-* [图 - 最小生成树(Prim & Kruskal)]
-* [图 - 最短路径(Dijkstra & Frolyd)]
-* [图 - 拓扑排序(Topological sort)]
+* [知识体系](/knowledge/algorithm/ds/overview/)
+* [线性表 - 数组和矩阵](/knowledge/algorithm/ds/array/)
+* [线性表 - 链表](/knowledge/algorithm/ds/linked/)
+* [线性表(散列) - 哈希表](/knowledge/algorithm/ds/hash/)
+* [线性表 - 栈和队列](/knowledge/algorithm/ds/stack&queue/)
+* [树 - 基础和Overview](/knowledge/algorithm/ds/tree/)
+* [树 - 二叉搜索树BST](/knowledge/algorithm/ds/bst/)
+* [树 - 平衡二叉树AVL](/knowledge/algorithm/ds/avl/)
+* [树 - 红黑树R-B Tree](/knowledge/algorithm/ds/r-b_tree/)
+* [树 - 哈夫曼树(Huffman Tree)](/knowledge/algorithm/ds/huffman/)
+* [树 - 前缀树(Trie Tree)](/knowledge/algorithm/ds/trie/)
+* [图 - 基础和Overview](/knowledge/algorithm/ds/graph/)
+* [图 - 遍历(BFS & DFS)](/knowledge/algorithm/ds/bfs&dfs/)
+* [图 - 最小生成树(Prim & Kruskal)](/knowledge/algorithm/ds/pak/)
+* [图 - 最短路径(Dijkstra & Frolyd)](/knowledge/algorithm/ds/daf/)
+* [图 - 拓扑排序(Topological sort)](/knowledge/algorithm/ds/topological/)
 * [图 - AOE & 关键路径]
 
 ### 常见排序算法
