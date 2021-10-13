@@ -9,7 +9,6 @@ permalink: /design/simple-factory/
 * 意图
 * 类图
 * 实现
-* 参考
 * 总结
 
 ### 意图
