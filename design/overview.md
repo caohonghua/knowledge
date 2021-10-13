@@ -122,9 +122,9 @@ permalink: /design/overview/
 
 ### 关联关系
 
-![design-overview_3](/knowledge/assets/images/design/design-overview_3.png)
+![design-overview_3](/knowledge/assets/images/design/design_overview_3.png)
 
 ### 知识体系图
 
-![design-overview_1](/knowledge/assets/images/design/design-overview_1.png)
+![design-overview_1](/knowledge/assets/images/design/design_overview_1.png)
 
