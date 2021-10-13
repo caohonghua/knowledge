@@ -10,7 +10,6 @@ permalink: /design/abstract-factory/
 * 类图
 * 实现
 * JDK
-* 总结
 
 ### 意图
 
@@ -108,21 +107,3 @@ public class Client {
 * [javax.xml.transform.TransformerFactory]
 * [javax.xml.xpath.XPathFactory]
 
-
-### 总结
-
-> 知识点的东西在上面参考文章中写的非常详细，读完之后问自己下面几个问题，直到可以流利的回答
-
-* 使用的场景?
-
-* 本质是什么?
-
-* 它解决了什么问题?
-
-* 它体现了设计模式中什么原则?
-
-* 存在的缺陷?
-
-* 你认为与它相关的设计模式有哪些? 它们之间的区别有哪些?
-
-* 开源架构中哪些使用了这一模式?
