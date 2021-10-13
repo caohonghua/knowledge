@@ -10,7 +10,6 @@ permalink: /design/builder/
 * 类图
 * 实现
 * JDK
-* 总结
 
 ### 意图
 
