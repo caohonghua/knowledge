@@ -22,7 +22,7 @@ permalink: /algorithm/
 * [图 - 最小生成树(Prim & Kruskal)](/knowledge/algorithm/ds/pak/)
 * [图 - 最短路径(Dijkstra & Frolyd)](/knowledge/algorithm/ds/daf/)
 * [图 - 拓扑排序(Topological sort)](/knowledge/algorithm/ds/topological/)
-* [图 - AOE & 关键路径]
+* [图 - AOE & 关键路径](/knowledge/algorithm/ds/aoe/)
 
 ### 常见排序算法
 
