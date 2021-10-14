@@ -8,6 +8,6 @@ Record the knowledge points in the work.
 
 * [Database](/knowledge/database/)
 
-* [设计模式](/knowledge/design/)
+* [设计模式与开发原则](/knowledge/design/)
 
 ### <a href="https://www.pdai.tech/" target="_blank">参考</a>
