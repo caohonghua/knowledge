@@ -2,7 +2,7 @@
 permalink: /design/
 ---
 
-## 设计模式
+## 设计模式与开发原则
 
 * [设计模式 - Overview](/knowledge/design/overview/)
 
@@ -53,3 +53,5 @@ permalink: /design/
 * [行为型 - 中介者（Mediator）](/knowledge/design/mediator/)
 
 * [行为型 - 备忘录（Memento）](/knowledge/design/memento/)
+
+* [开发原则](/knowledge/design/principle/)
