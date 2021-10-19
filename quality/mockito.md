@@ -28,13 +28,13 @@ Mock 测试就是在测试过程中，对于某些不容易构造（如 HttpServ
 
 先来看看下面这个示例：
 
-![ut-dev-mock-4.png](/knowledge/assets/images/quality/ut-dev-mock-4.pmg)
+![ut-dev-mock-4.png](/knowledge/assets/images/quality/ut-dev-mock-4.png)
 
 从上图可以看出如果我们要对A进行测试，那么就要先把整个依赖树构建出来，也就是BCDE的实例。
 
 一种替代方案就是使用mocks
 
-![ut-dev-mock-5.png](/knowledge/assets/images/quality/ut-dev-mock-5.pmg)
+![ut-dev-mock-5.png](/knowledge/assets/images/quality/ut-dev-mock-5.png)
 
 从图中可以清晰的看出, mock对象就是在调试期间用来作为真实对象的替代品。
 
