@@ -1,5 +1,5 @@
 ---
-permalink: /quliaty/unit-test-idea/
+permalink: /quality/unit-test-idea/
 ---
 
 ## 单元测试 - IDEA下单元测试详解
