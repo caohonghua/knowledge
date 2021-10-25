@@ -4,7 +4,7 @@ permalink: /database/overview/
 
 ## 知识体系
 
-![db.png](/knowledge/asets/images/database/base/db.png)
+![db.png](/knowledge/assets/images/database/base/db.png)
 
 ### 数据库基础与理论
 
