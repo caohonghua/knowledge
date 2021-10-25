@@ -6,7 +6,7 @@ Record the knowledge points in the work.
 
 * [Algorithm](/knowledge/algorithm/)
 
-* [Database](/knowledge/database/)
+* [数据库](/knowledge/database/)
 
 * [设计模式与开发原则](/knowledge/design/)
 
