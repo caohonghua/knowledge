@@ -136,7 +136,7 @@ MySQL 中提供了两种封锁粒度: 行级锁以及表级锁。
 
 在选择封锁粒度时，需要在锁开销和并发程度之间做一个权衡。
 
-![db-sql-z-7](/knowledge/assets/images/database/base/db-sql-z-7.png)
+![db-sql-z-7](/knowledge/assets/images/database/base/db-sql-z-7.jpg)
 
 #### 封锁类型
 
